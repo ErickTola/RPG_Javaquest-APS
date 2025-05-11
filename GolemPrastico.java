@@ -1,32 +1,54 @@
-public class GolemPrastico extends Inimigo{
+public class GolemPrastico extends Inimigo{ // (Herança)
 
-    GolemPrastico() {
-        hp = 35;
-        atk = 1;
-        def = 1;
-        agl = 1;
-        dmg = 0;
-        nome = "Golem de Plástico";
+    GolemPrastico() {// (Construtor)
+        //Construtor que substituí os valores da classe pai pelos valores do inimigo em questão.
+        this.hp = 35;
+        this.maxHp = hp;
+        this.atk = 1;
+        this.def = 1;
+        this.agl = 1;
+        this.dmg = 0;
+        this.atkUsado = 0;
+        this.nome = "Golem de Plástico";
     }
-    public void efeitoEspec(int escolha){
+    //Substituí o metodo genérico da classe pai e define os efeitos dos ataques do inimigo atual.
+
+    @Override
+    public void efeitoEspec(int escolha){ // (Sobrescrita de metodo)
         switch (escolha) {
             case 1:
                 System.out.println("\nO Golem arremessa uma pedra!");
-                dmg = 2;
+                this.dmg = 2;
+                this.atkUsado = 0;
                 break;
             case 2:
                 System.out.println("\nO Golem joga areia em seus olhos!");
-                if (heroi.debuffInit <= 0) {
-                    heroi.debuffInit += Combate.TurnoAtual;
-                    heroi.debuffTempo = 2;
-                    heroi.atk -= 1;
-                    heroi.desvantagem = true;
-                    System.out.println("\nVocê está com dificuldade de atacar agora!");
-                }
-                dmg = 1;
+                this.atkUsado = 1;
+                this.dmg = 1;
+                break;
+            default:
+                System.out.println("Ocorreu um erro na escolha de ataque do golem.");
                 break;
         }
     }
+    //Substituí o metodo genérico da classe pai e aplica a desvantagem no herói caso o ataque cause desvantagem.
+    @Override
+    public void adcDebuff(){ // (Sobrescrita de metodo)
+        switch (this.atkUsado){
+            case 1:
+                //Verifica se o jogador já não está com alguma desvantagem
+                //Salva o turno em que a desvantagem foi incialmente aplicada e determina a sua duração
+                if (Heroi.getDebuffInit() <= 0) {
+                    Heroi.aplDesv(2,1,"atk");
+                }
+                this.atkUsado = 0;
+                break;
+            default:
+                this.atkUsado = 0;
+                break;
+        }
+    }
+
 }
 
 

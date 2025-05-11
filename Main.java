@@ -1,7 +1,8 @@
 
 public class Main {
     public static void main(String[] args) {
-        Combate comb1 = new Combate("Golem");
+        Inventario.adcItem("Cura Pequena");
+        //Combate comb1 = new Combate("Golem");// (Instanciação de objeto)
 
     }
 }
