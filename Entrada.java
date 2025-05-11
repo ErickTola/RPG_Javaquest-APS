@@ -21,4 +21,5 @@ public class Entrada {
     public static String entradaStr(){
         return scn.next();
     }
+
 }

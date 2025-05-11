@@ -1,16 +1,16 @@
 public class Inventario {
 
-    public static String inv[] = new String[15];
+    public static String invConsumiveis[] = new String[15];
 
 
     public static void adcItem(String name){
 
-        for(int i = 0; i < inv.length; i++){
-            if(inv[i] == null){
-                inv[i] = name;
+        for(int i = 0; i < invConsumiveis.length; i++){
+            if(invConsumiveis[i] == null){
+                invConsumiveis[i] = name;
                 break;
             }
-            if (i == inv.length - 1 && inv[i] != null){
+            if (i == invConsumiveis.length - 1 && invConsumiveis[i] != null){
             System.out.println("Não há espaço no inventário");
             }
         }
@@ -18,11 +18,11 @@ public class Inventario {
     }
 
     public static void rmvItemId(int x){ // Remove item do inventário pelo indice (Número da lista)
-            inv[x-1] = null;
-            for(int i = x-1; i < inv.length; i++){
-                if (i != inv.length - 1) {
-                    inv[i] = inv[i + 1];
-                    inv[i + 1] = null;
+            invConsumiveis[x-1] = null;
+            for(int i = x-1; i < invConsumiveis.length; i++){
+                if (i != invConsumiveis.length - 1) {
+                    invConsumiveis[i] = invConsumiveis[i + 1];
+                    invConsumiveis[i + 1] = null;
                 }
             }
     }
@@ -30,32 +30,44 @@ public class Inventario {
     public static void rmvItemNome(String x){ // Remove o item do inventário pelo nome
         int indice = 0;
 
-        for(int i=0;i<inv.length;i++){
-            if (inv[i] == x){
-                inv[i] = null;
+        for(int i = 0; i< invConsumiveis.length; i++){
+            if (invConsumiveis[i] == x){
+                invConsumiveis[i] = null;
                 indice = i;
                 break;
             }
         }
-        for(int i = indice; i < inv.length; i++){
-            if (i != inv.length - 1) {
-                inv[i] = inv[i + 1];
-                inv[i + 1] = null;
+        for(int i = indice; i < invConsumiveis.length; i++){
+            if (i != invConsumiveis.length - 1) {
+                invConsumiveis[i] = invConsumiveis[i + 1];
+                invConsumiveis[i + 1] = null;
             }
         }
     }
 
     public static void usaItemInv(int x){
-        Items.usaItem(inv[x-1]);
+        Items.usaItem(invConsumiveis[x-1]);
         rmvItemId(x);
     }
 
-    public static void printInv(){
-        for(String x: inv){
-            if (x != null) {
-                System.out.println(x);
+    public static int printInv(){
+        int totalDeItens = 0;
+        for(int i = 0; i < invConsumiveis.length; i++){
+            if (invConsumiveis[i] != null) {
+                System.out.println( (i+1) + " - " + invConsumiveis[i] );
+                totalDeItens += 1;
             }
         }
+        return totalDeItens;
+    }
+
+    public static boolean invCheck(){
+        for(String s: invConsumiveis){
+            if(s != null){
+                return true;
+            }
+        }
+        return false;
     }
 
 }

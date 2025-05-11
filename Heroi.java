@@ -5,10 +5,6 @@ public class Heroi {
 
     // (Atributos Estáticos e Encapsulamento)
     static private int maxHp = 35;
-    static private int maxAtk = 1;
-    static private int maxDef = 1;
-    static private int maxAgl = 1;
-    static private int maxDmg = 1;
     static private Integer debuffs[] = {0,0,0};
     static private Integer buffs[] = {0,0,0};
     static private int hp = 35;
@@ -88,7 +84,8 @@ public class Heroi {
 
     public static void adcVida(int Cura){
         hp += Cura;
-        if (hp < maxHp){
+        System.out.println("Você recuperou "+ Cura +" de vida!");
+        if (hp > maxHp){
             hp = maxHp;
         }
     }
