@@ -4,6 +4,6 @@ public class Main {
         Inventario.adcItem("Cura Pequena");
 
         Combate comb1 = new Combate("Golem");// (Instanciação de objeto)
-
+        System.out.println("Teste");
     }
 }
