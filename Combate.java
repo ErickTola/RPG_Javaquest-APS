@@ -74,7 +74,7 @@ public class Combate {
                         atacou = true;
                         break;
                     case 3:
-                        Heroi.aplVan(1,1,"def");
+                        Heroi.riseDef();
                         break;
                     default:
                         break;

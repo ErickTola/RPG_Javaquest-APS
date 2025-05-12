@@ -1,9 +1,20 @@
+import java.sql.SQLOutput;
+
 public class Menus {
     static int escolhaMenu = 0;
+
+    public static String separador(){
+        String sep = "";
+        for(int i = 0; i < 100 ; i++){
+            sep = sep + "-";
+        }
+        return sep + "\n";
+    }
+
     public static int menuCombate(){
 
         System.out.println(
-                "-------------------------------------\n"+
+                separador()+
                 "O que deseja fazer?         HP: "+ Heroi.getHp() + "\n" +
                 "\n"+
                 "1 - Atacar\n"+
@@ -16,7 +27,7 @@ public class Menus {
         while (escolhaMenu <= 0 || escolhaMenu > 3) { // (Tratamento de excessões)
 
             System.out.println(
-                    "-------------------------------------\n"+
+                    separador()+
                     "O que deseja fazer?         HP: "+ Heroi.getHp() + "\n" +
                     "\n"+
                     "1 - Atacar\n"+
@@ -31,8 +42,8 @@ public class Menus {
             case 1:
                 escolhaMenu = -1;
                 System.out.println(
+                        separador() +
                         """
-                                -------------------------------------
                                 Como deseja atacar?
                                 
                                 1 - Ataque Certeiro (+1 de precisão)
@@ -75,4 +86,22 @@ public class Menus {
 
         return 0;
     }
+
+    public static void menuStats(){
+        System.out.println(separador());
+        System.out.println("Stats:\n");
+        System.out.println("Vida: " + Heroi.getHp() +"\n");
+        System.out.println("Atk: " + Heroi.getAtk());
+        System.out.println("Dmg: " + Heroi.getDmg());
+        System.out.println("Def: " + Heroi.getDef());
+        System.out.println("Agl: " + Heroi.getAgl() +"\n");
+        System.out.println("Equipamento:\n");
+        System.out.println("Arma: " + Heroi.getArmaAtual() +" | "+ Items.descItem(Heroi.getArmaAtual()));
+        System.out.println("Armadura: " + Heroi.getArmaduraAtual() +" | "+ Items.descItem(Heroi.getArmaduraAtual()));
+        System.out.print("Anel: " + Heroi.getAnelAtual());
+        if (Heroi.getAnelAtual() != "Nenhum"){
+            System.out.println(" | "+ Items.descItem(Heroi.getAnelAtual()));
+        }
+    }
+
 }

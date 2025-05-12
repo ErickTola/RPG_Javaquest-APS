@@ -7,6 +7,9 @@ public class Heroi {
     static private int maxHp = 35;
     static private Integer debuffs[] = {0,0,0};
     static private Integer buffs[] = {0,0,0};
+    static private String armaAtual = "Pedaço de Madeira";
+    static private String armaduraAtual = "Roupas Comuns";
+    static private String anelAtual = "Nenhum";
     static private int hp = 35;
     static private int atk = 1;
     static private int def = 1;
@@ -19,6 +22,7 @@ public class Heroi {
     static private int buffTempo = 0;
     static private boolean vantagem = false;
     static private boolean vivo = true;
+    static private boolean defRose = false;
 
     static private final Random HeroRd = new Random(); //(Objeto final)
 
@@ -112,7 +116,10 @@ public class Heroi {
             vantagem = false;
             System.out.println("Sua vantagem passou!");
         }
-
+        if(defRose){
+            def -= 1;
+            defRose = false;
+        }
     }
 
     //Função utiliziada para aplicar alguma desvantagem no jogador
@@ -169,6 +176,11 @@ public class Heroi {
 
     }
 
+    public static void riseDef(){
+        defRose = true;
+        def += 1;
+    }
+
     // (Encapsulamento das variáveis.)
     public static String getHp(){
         return (hp + "/" + maxHp);
@@ -189,13 +201,57 @@ public class Heroi {
     public static int getDmg(){
         return dmg;
     }
+
     public static int getDebuffInit(){
         return debuffInit;
     }
+
     public static boolean getVivo(){
         return vivo;
     }
 
+    public static String getArmaAtual() {
+        return armaAtual;
+    }
 
+    public static String getArmaduraAtual() {
+        return armaduraAtual;
+    }
+
+    public static String getAnelAtual() {
+        return anelAtual;
+    }
+
+    public static void setAtk(int x){
+        atk = x;
+    }
+
+    public static void setDmg(int x){
+        dmg = x;
+    }
+
+    public static void setDef(int x){
+        def = x;
+    }
+
+    public static void setAgl(int x){
+        agl = x;
+    }
+
+    public static void riseMaxHp(int x){
+        maxHp += x;
+    }
+
+    public static void setArmaAtual(String armaAtual) {
+        Heroi.armaAtual = armaAtual;
+    }
+
+    public static void setArmaduraAtual(String armaduraAtual) {
+        Heroi.armaduraAtual = armaduraAtual;
+    }
+
+    public static void setAnelAtual(String anelAtual) {
+        Heroi.anelAtual = anelAtual;
+    }
 }
 
