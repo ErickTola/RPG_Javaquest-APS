@@ -1,4 +1,4 @@
-import java.sql.SQLOutput;
+package Sistema;
 
 public class Menus {
     static int escolhaMenu = 0;
@@ -53,7 +53,7 @@ public class Menus {
                 System.out.print("Digite sua escolha: ");
                 escolhaMenu = Entrada.entradaInt();
                 while (escolhaMenu < 0 || escolhaMenu > 2){
-                    System.out.println("Entrada Invalida");
+                    System.out.println("Sistema.Entrada Invalida");
                     System.out.print("Digite sua escolha: ");
                     escolhaMenu = Entrada.entradaInt();
                 }
@@ -68,7 +68,7 @@ public class Menus {
                     System.out.print("Digite sua escolha: ");
                     escolhaMenu = Entrada.entradaInt();
                     while (escolhaMenu < 0 || escolhaMenu > totalDeItens) {
-                        System.out.println("Entrada Inválida!");
+                        System.out.println("Sistema.Entrada Inválida!");
                         System.out.print("Digite sua escolha: ");
                         escolhaMenu = Entrada.entradaInt();
                     }
@@ -103,5 +103,7 @@ public class Menus {
             System.out.println(" | "+ Items.descItem(Heroi.getAnelAtual()));
         }
     }
+
+
 
 }

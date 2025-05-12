@@ -1,3 +1,9 @@
+package Sistema;
+
+import Inimigos.GolemPrastico;
+import Inimigos.Inimigo;
+import Inimigos.Slime;
+
 public class Combate {
     static int TurnoAtual = 1;
     Inimigo InimigoAtual; // Declaração de váriavel com o tipo da classe
@@ -15,6 +21,8 @@ public class Combate {
                 System.out.println("\nUm Golem selvagem aparece!!");
                 break;
             case "Slime":
+                InimigoAtual = new Slime(); // (Polimorfismo de classe)
+                System.out.println("\nVocê se depara com um Slime!!");
                 break;
         }
 
@@ -31,7 +39,7 @@ public class Combate {
             int tmpDmg = 0;
             boolean atacou = false;
             if (!ordem) {
-                //Turno do Inimigo
+                //Turno do Inimigos.Inimigo
                 if (InimigoAtual.ataque() >= Heroi.defesa()) {
                     int tmpDano = InimigoAtual.dano();
                     Heroi.rmvVida(tmpDano);
@@ -39,7 +47,7 @@ public class Combate {
                     System.out.println("\nVocê recebe " + tmpDano + " de Dano!");
                     System.out.println("\nSua vida: " + Heroi.getHp());
                 } else {
-                    System.out.println("\n" + InimigoAtual.nome + " errou o ataque!");
+                    System.out.println("\n" + InimigoAtual.getNome() + " errou o ataque!");
                 }
                 //Verifica se a vida do jogador está acima de 0
                 if (!Heroi.getVivo()) {
@@ -91,7 +99,7 @@ public class Combate {
                     }
                     //Verifica se a vida do inimigo está acima de 0
                     if (!InimigoAtual.vivo) {
-                        System.out.println("Você derrotou o " + InimigoAtual.nome + "!");
+                        System.out.println("Você derrotou o " + InimigoAtual.getNome() + "!");
                         break;
                     }
                 }

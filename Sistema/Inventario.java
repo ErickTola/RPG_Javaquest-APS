@@ -1,3 +1,5 @@
+package Sistema;
+
 public class Inventario {
 
     public static String invConsumiveis[] = new String[15];

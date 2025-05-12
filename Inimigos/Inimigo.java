@@ -1,3 +1,5 @@
+package Inimigos;
+
 import java.util.Random;
 
 
@@ -83,6 +85,10 @@ public abstract class Inimigo { // (Classe abstrata)
 
     public String getHp(){
         return (this.hp + "/" + this.maxHp);
+    }
+
+    public String getNome(){
+        return nome;
     }
 
 }

@@ -22,17 +22,17 @@ Aqui nosso herói tera que enfrentar diversos inimigos robóticos para conseguir
 
 Inimigos:
 Área 1:
-Slime de chorume
-Mago de sujeira
+Inimigos.Slime de chorume
+Inimigos.Mago de sujeira
 Golem de plástico (Mini boss)
 
 Área 2:
 Braços mecânicos
-Trabalhador
+Inimigos.Trabalhador
 Robô carregador (Mini boss)
 
 Área 3:
-Rato Gigante
+Inimigos.Rato Gigante
 Sentinela Robô
 
 Área 4:

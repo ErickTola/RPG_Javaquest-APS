@@ -1,3 +1,5 @@
+package Sistema;
+
 import java.util.Scanner;
 
 public class Entrada {
@@ -11,12 +13,11 @@ public class Entrada {
             scn.nextLine();
             return tmp;
         } catch(Exception e){ // (Tratamento de excessões)
-            System.out.println("Entrada Inválida");
+            System.out.println("Sistema.Entrada Inválida");
             scn.nextLine();
             return 0;
         }
     }
-
     //Função para conseguirmos o valor de entrada de texto do jogador.
     public static String entradaStr(){
         return scn.next();

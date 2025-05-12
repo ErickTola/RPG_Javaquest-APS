@@ -1,6 +1,8 @@
+package Inimigos;
+
 public class GolemPrastico extends Inimigo{ // (Herança)
 
-    GolemPrastico() {// (Construtor)
+    public GolemPrastico() {// (Construtor)
         //Construtor que substituí os valores da classe pai pelos valores do inimigo em questão.
         this.hp = 35;
         this.maxHp = hp;
@@ -38,8 +40,8 @@ public class GolemPrastico extends Inimigo{ // (Herança)
             case 1:
                 //Verifica se o jogador já não está com alguma desvantagem
                 //Salva o turno em que a desvantagem foi incialmente aplicada e determina a sua duração
-                if (Heroi.getDebuffInit() <= 0) {
-                    Heroi.aplDesv(2,1,"atk");
+                if (Sistema.Heroi.getDebuffInit() <= 0) {
+                    Sistema.Heroi.aplDesv(2,1,"atk");
                 }
                 this.atkUsado = 0;
                 break;
