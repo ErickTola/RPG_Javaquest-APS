@@ -13,6 +13,7 @@ public abstract class Inimigo { // (Classe abstrata)
      int agl;
      int dmg;
      int atkUsado;
+     public boolean perdeVez;
      String nome;
      public boolean vivo = true;
 
@@ -75,6 +76,17 @@ public abstract class Inimigo { // (Classe abstrata)
             System.out.println("O inimigo foi derrotado!");
             this.vivo = false;
         }
+    }
+
+    public int calculadorChance(int porcentagem){
+        int escolha = EnemyRd.nextInt(1,11);
+        if (escolha <= (porcentagem/10)){
+            return 2;
+        }else{
+            return 1;
+        }
+
+
     }
 
     //Metodo abstrato que adiciona a desvantagem ao jogador caso o ataque inimigo acerte, será implementado nas classes filhas.

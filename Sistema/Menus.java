@@ -52,12 +52,14 @@ public class Menus {
                                 """);
                 System.out.print("Digite sua escolha: ");
                 escolhaMenu = Entrada.entradaInt();
+                System.out.print(Menus.separador());
                 while (escolhaMenu < 0 || escolhaMenu > 2){
                     if (escolhaMenu != -1){
                     System.out.println("Entrada Invalida");
                     }
                     System.out.print("Digite sua escolha: ");
                     escolhaMenu = Entrada.entradaInt();
+                    System.out.print(Menus.separador());
                 }
                 Combate.opcao = escolhaMenu;
                 break;

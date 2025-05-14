@@ -8,6 +8,7 @@ public class Combate {
     int initEnem;
     public static int opcao = -1;
     boolean ordem;
+    boolean stun = false;
 
     Combate(String escolha){ // (Metodo construtor)
 
@@ -26,6 +27,10 @@ public class Combate {
                 InimigoAtual = new Mago();
                 System.out.println("\nUm Mago de sujeira surge duma pilha de lixo!");
                 break;
+            case "Braço":
+                InimigoAtual = new BracosRobos();
+                System.out.println("\nUma parede de braços te encara!");
+                break;
         }
 
         // Calcula iniciativa
@@ -40,17 +45,24 @@ public class Combate {
             int tmpAtk = 0;
             int tmpDmg = 0;
             boolean atacou = false;
+
             if (!ordem) {
-                //Turno do Inimigos.Inimigo
+                //Turno do Inimigo
+
                 if (InimigoAtual.ataque() >= Heroi.defesa()) {
                     int tmpDano = InimigoAtual.dano();
+                    stun = InimigoAtual.perdeVez;
                     Heroi.rmvVida(tmpDano);
                     InimigoAtual.adcDebuff();
-                    System.out.println("\nVocê recebe " + tmpDano + " de Dano!");
-                    System.out.println("\nSua vida: " + Heroi.getHp());
+                    if(!stun) {
+                        System.out.println("\nVocê recebe " + tmpDano + " de Dano!");
+                        System.out.println("\nSua vida: " + Heroi.getHp());
+                    }
                 } else {
                     System.out.println("\n" + InimigoAtual.getNome() + " errou o ataque!");
+                    stun = false;
                 }
+
                 //Verifica se a vida do jogador está acima de 0
                 if (!Heroi.getVivo()) {
                     System.out.println("FIM DE JOGO!");
@@ -61,53 +73,59 @@ public class Combate {
             if (ordem) {
                 // Turno do herói
                 Heroi.InicioTurno();
-                Menus.menuCombate();
-                switch (opcao) {
-                    case 1:
-                        opcao = -1;
-                        tmpAtk = Heroi.getAtk() + 1;
-                        if (Heroi.getDmg() > 0) {
-                            tmpDmg = Heroi.getDmg();
-                        }
-                        if (Heroi.getDmg() <= 0) {
-                            tmpDmg = 1;
-                        }
-                        atacou = true;
-                        break;
-                    case 2:
-                        opcao = -1;
-                        if (Heroi.getAtk() > 0) {
-                            tmpAtk = Heroi.getAtk();
-                        }
-                        if (Heroi.getAtk() <= 0) {
-                            tmpAtk = 1;
-                        }
-                        tmpDmg = Heroi.getDmg() + 1;
-                        atacou = true;
-                        break;
-                    case 3:
-                        opcao = -1;
-                        Heroi.riseDef();
-                        break;
-                    default:
-                        opcao = -1;
-                        break;
-                }
-                //Calcula ataque do jogador contra a defesa do inimigo
-                if (atacou) {
-                    if (Heroi.ataque(tmpAtk) >= InimigoAtual.defesa()) {
-                        int tmpDano = Heroi.dano(tmpDmg);
-                        InimigoAtual.rmvVida(tmpDano);
-                        System.out.println("\nO inimigo recebe " + tmpDano + " de Dano!");
-                        System.out.println("\nVida do inimigo: " + InimigoAtual.getHp());
-                    } else {
-                        System.out.println("\nVocê errou o ataque!");
+                if(!stun){
+                    Menus.menuCombate();
+                    switch (opcao) {
+                        case 1:
+                            opcao = -1;
+                            tmpAtk = Heroi.getAtk() + 1;
+                            if (Heroi.getDmg() > 0) {
+                                tmpDmg = Heroi.getDmg();
+                            }
+                            if (Heroi.getDmg() <= 0) {
+                                tmpDmg = 1;
+                            }
+                            atacou = true;
+                            break;
+                        case 2:
+                            opcao = -1;
+                            if (Heroi.getAtk() > 0) {
+                                tmpAtk = Heroi.getAtk();
+                            }
+                            if (Heroi.getAtk() <= 0) {
+                                tmpAtk = 1;
+                            }
+                            tmpDmg = Heroi.getDmg() + 1;
+                            atacou = true;
+                            break;
+                        case 3:
+                            opcao = -1;
+                            Heroi.riseDef();
+                            break;
+                        default:
+                            opcao = -1;
+                            break;
                     }
-                    //Verifica se a vida do inimigo está acima de 0
-                    if (!InimigoAtual.vivo) {
-                        System.out.println("Você derrotou o " + InimigoAtual.getNome() + "!");
-                        break;
+                    //Calcula ataque do jogador contra a defesa do inimigo
+                    if (atacou) {
+                        if (Heroi.ataque(tmpAtk) >= InimigoAtual.defesa()) {
+                            int tmpDano = Heroi.dano(tmpDmg);
+                            InimigoAtual.rmvVida(tmpDano);
+                            System.out.println("\nO inimigo recebe " + tmpDano + " de Dano!");
+                            System.out.println("\nVida do inimigo: " + InimigoAtual.getHp());
+                        } else {
+                            System.out.println("\nVocê errou o ataque!");
+                        }
+                        //Verifica se a vida do inimigo está acima de 0
+                        if (!InimigoAtual.vivo) {
+                            System.out.println("Você derrotou o " + InimigoAtual.getNome() + "!");
+                            break;
+                        }
+
                     }
+                }else{
+                    System.out.println("\nVocê não consegue se mover por um turno!");
+                    System.out.print(Menus.separador());
                 }
                 ordem = false;
             }
