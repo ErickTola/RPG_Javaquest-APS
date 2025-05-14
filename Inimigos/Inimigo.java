@@ -78,6 +78,14 @@ public abstract class Inimigo { // (Classe abstrata)
         }
     }
 
+    public void adcVida(int Cura){
+        this.hp += Cura;
+        System.out.println("O inimigo recuperou "+ Cura +" de vida!");
+        if (this.hp > this.maxHp){
+            this.hp = this.maxHp;
+        }
+    }
+
     public int calculadorChance(int porcentagem){
         int escolha = EnemyRd.nextInt(1,11);
         if (escolha <= (porcentagem/10)){

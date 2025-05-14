@@ -7,8 +7,8 @@ public class GolemPrastico extends Inimigo{ // (Herança)
         this.hp = 35;
         this.maxHp = hp;
         this.atk = 1;
-        this.def = 1;
-        this.agl = 1;
+        this.def = 3;
+        this.agl = 2;
         this.dmg = 0;
         this.atkUsado = 0;
         this.nome = "Golem de Plástico";

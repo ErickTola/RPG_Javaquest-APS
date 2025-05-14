@@ -54,7 +54,7 @@ public class Combate {
                     stun = InimigoAtual.perdeVez;
                     Heroi.rmvVida(tmpDano);
                     InimigoAtual.adcDebuff();
-                    if(!stun) {
+                    if(tmpDano != 0) {
                         System.out.println("\nVocê recebe " + tmpDano + " de Dano!");
                         System.out.println("\nSua vida: " + Heroi.getHp());
                     }

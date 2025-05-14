@@ -10,7 +10,7 @@ public class SentinelaRobo extends Inimigo{
         this.agl = 1;
         this.dmg = 0;
         this.atkUsado = 0;
-        this.nome = "Braços Robóticos";
+        this.nome = "Sentinela Robô";
     }
 
     @Override
