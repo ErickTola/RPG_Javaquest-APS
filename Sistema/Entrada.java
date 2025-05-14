@@ -13,9 +13,9 @@ public class Entrada {
             scn.nextLine();
             return tmp;
         } catch(Exception e){ // (Tratamento de excessões)
-            System.out.println("Sistema.Entrada Inválida");
+            System.out.println("Entrada Inválida");
             scn.nextLine();
-            return 0;
+            return -1;
         }
     }
     //Função para conseguirmos o valor de entrada de texto do jogador.

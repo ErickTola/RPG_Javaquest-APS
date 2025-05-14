@@ -1,14 +1,12 @@
 package Sistema;
-
-import Inimigos.GolemPrastico;
-import Inimigos.Inimigo;
-import Inimigos.Slime;
+import Inimigos.*;
 
 public class Combate {
     static int TurnoAtual = 1;
-    Inimigo InimigoAtual; // Declaração de váriavel com o tipo da classe
+    public Inimigo InimigoAtual; // Declaração de váriavel com o tipo da classe
     int initHero;
     int initEnem;
+    public static int opcao = -1;
     boolean ordem;
 
     Combate(String escolha){ // (Metodo construtor)
@@ -18,11 +16,15 @@ public class Combate {
         switch(escolha) {
             case "Golem":
                 InimigoAtual = new GolemPrastico(); // (Polimorfismo de classe)
-                System.out.println("\nUm Golem selvagem aparece!!");
+                System.out.println("\nUm Golem de plástico selvagem aparece!!");
                 break;
             case "Slime":
                 InimigoAtual = new Slime(); // (Polimorfismo de classe)
-                System.out.println("\nVocê se depara com um Slime!!");
+                System.out.println("\nVocê se depara com um Slime de Chorume!!");
+                break;
+            case "Mago":
+                InimigoAtual = new Mago();
+                System.out.println("\nUm Mago de sujeira surge duma pilha de lixo!");
                 break;
         }
 
@@ -59,9 +61,10 @@ public class Combate {
             if (ordem) {
                 // Turno do herói
                 Heroi.InicioTurno();
-                int opcao = Menus.menuCombate();
+                Menus.menuCombate();
                 switch (opcao) {
                     case 1:
+                        opcao = -1;
                         tmpAtk = Heroi.getAtk() + 1;
                         if (Heroi.getDmg() > 0) {
                             tmpDmg = Heroi.getDmg();
@@ -72,6 +75,7 @@ public class Combate {
                         atacou = true;
                         break;
                     case 2:
+                        opcao = -1;
                         if (Heroi.getAtk() > 0) {
                             tmpAtk = Heroi.getAtk();
                         }
@@ -82,9 +86,11 @@ public class Combate {
                         atacou = true;
                         break;
                     case 3:
+                        opcao = -1;
                         Heroi.riseDef();
                         break;
                     default:
+                        opcao = -1;
                         break;
                 }
                 //Calcula ataque do jogador contra a defesa do inimigo

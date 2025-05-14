@@ -53,13 +53,17 @@ public class Menus {
                 System.out.print("Digite sua escolha: ");
                 escolhaMenu = Entrada.entradaInt();
                 while (escolhaMenu < 0 || escolhaMenu > 2){
-                    System.out.println("Sistema.Entrada Invalida");
+                    if (escolhaMenu != -1){
+                    System.out.println("Entrada Invalida");
+                    }
                     System.out.print("Digite sua escolha: ");
                     escolhaMenu = Entrada.entradaInt();
                 }
-                return escolhaMenu;
+                Combate.opcao = escolhaMenu;
+                break;
             case 2:
-                return 3;
+                Combate.opcao = 3;
+                break;
             case 3:
                 escolhaMenu = -1;
                 if(Inventario.invCheck()) {
@@ -73,6 +77,7 @@ public class Menus {
                         escolhaMenu = Entrada.entradaInt();
                     }
                     if (escolhaMenu == 0){
+                        Combate.opcao = -1;
                         menuCombate();
                     }else{
                         Inventario.usaItemInv(escolhaMenu);
@@ -80,8 +85,13 @@ public class Menus {
                     }
                 }else{
                     System.out.println("Inventário vazio!");
+                    Combate.opcao = -1;
                     menuCombate();
+
                 }
+            default:
+                menuCombate();
+                break;
         }
 
         return 0;

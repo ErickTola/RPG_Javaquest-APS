@@ -1,5 +1,4 @@
 package Sistema;
-
 import java.util.Arrays;
 import java.util.Random;
 
@@ -25,6 +24,8 @@ public class Heroi {
     static private boolean vantagem = false;
     static private boolean vivo = true;
     static private boolean defRose = false;
+    static private boolean veneno = false;
+    static private int dmgVeneno = 0;
 
     static private final Random HeroRd = new Random(); //(Objeto final)
 
@@ -98,15 +99,22 @@ public class Heroi {
 
     //Função executada sempre que o turno do jogador começa, é usada para calcular a duração das desvantagens, e caso elas tenham acabado removê-las.
     public static void InicioTurno(){
-        if (debuffInit + debuffTempo <= Combate.TurnoAtual && desvantagem){
+        if (debuffInit + debuffTempo <= Combate.TurnoAtual && (desvantagem || veneno)){
             debuffInit = 0;
             debuffTempo = 0;
             atk -= debuffs[0];
             def -= debuffs[1];
             dmg -= debuffs[2];
             Arrays.fill(debuffs, 0);
-            desvantagem = false;
-            System.out.println("Sua desvantagem passou!");
+            if(desvantagem){
+                System.out.println("Sua desvantagem passou!");
+                desvantagem = false;
+            }
+            if(veneno){
+                System.out.println("O veneno passou!");
+                veneno = false;
+            }
+
         }
         if (buffInit + buffTempo <= Combate.TurnoAtual && vantagem){
             buffInit = 0;
@@ -122,13 +130,18 @@ public class Heroi {
             def -= 1;
             defRose = false;
         }
+        if(veneno){
+            rmvVida(dmgVeneno);
+            System.out.print(Menus.separador());
+            System.out.println("Você recebe " + dmgVeneno +" de dano do veneno!");
+        }
     }
 
     //Função utiliziada para aplicar alguma desvantagem no jogador
     public static void aplDesv(int dur,int valor, String atrb){
-        Heroi.debuffInit = Combate.TurnoAtual;
-        Heroi.debuffTempo = dur;
-        Heroi.desvantagem = true;
+        debuffInit = Combate.TurnoAtual;
+        debuffTempo = dur;
+        desvantagem = true;
 
         switch(atrb){
             case("atk"):
@@ -148,6 +161,11 @@ public class Heroi {
                 dmg -= valor;
                 debuffs[2] = -valor;
                 System.out.println("\nVocê se sente fraco agora!");
+                break;
+            case("veneno"):
+                veneno = true;
+                dmgVeneno = valor;
+                System.out.println("\nVocê está envenenado!");
                 break;
         }
 
@@ -181,6 +199,7 @@ public class Heroi {
     public static void riseDef(){
         defRose = true;
         def += 1;
+        System.out.println("Você se prepara para se defender!");
     }
 
     // (Encapsulamento das variáveis.)
