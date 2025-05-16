@@ -38,6 +38,10 @@ public abstract class  Items {
     public static void equipItem(String item){
 
         switch (item){
+            case "Pedaço de Madeira":
+                Heroi.setArmaAtual(item);
+                Heroi.setAtk(1);
+                break;
             case "Coletor de Lixo":
                 Heroi.setArmaAtual(item);
                 Heroi.setAtk(2);

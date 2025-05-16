@@ -6,7 +6,7 @@ public class Combate {
     public Inimigo InimigoAtual; // Declaração de váriavel com o tipo da classe
     int initHero;
     int initEnem;
-    public static int opcao = -1;
+    public static int opcao = 0;
     boolean ordem;
     boolean stun = false;
 
@@ -31,6 +31,40 @@ public class Combate {
                 InimigoAtual = new BracosRobos();
                 System.out.println("\nUma parede de braços te encara!");
                 break;
+            case "Trabalhador":
+                InimigoAtual = new Trabalhador();
+                System.out.println("\nUm trabalhador desesperado te enfrenta!");
+                break;
+            case "Carregador":
+                InimigoAtual = new CarregadorRobo();
+                System.out.println("\nUm Robô de carga bloqueia seu caminho!");
+                break;
+            case "Rato":
+                InimigoAtual = new Rato();
+                System.out.println("\nUm grande Rato mutante quer fazer você de janta!");
+                break;
+            case "Sentinela":
+                InimigoAtual = new SentinelaRobo();
+                System.out.println("\nUm Sentinela Robô da cidade te enfrenta!");
+                break;
+            case "Guarda":
+                InimigoAtual = new GuardaRobo();
+                System.out.println("\nUm Guarda robôtico empede sua passagem!");
+                break;
+            case "Ciborgue":
+                InimigoAtual = new Ciborgue();
+                System.out.println("\nO Ciêntista Ciborgue quer acabar com você!");
+                break;
+            case "Boss":
+                InimigoAtual = new Gigaboss();
+                System.out.println("\nO Grande Chefe te encara malignamente!");
+                break;
+            default:
+                InimigoAtual = new Dummy();
+                System.out.println("\nUm erro na instanciação de inimigos ocorreu!!");
+                InimigoAtual.rmvVida(0);
+                break;
+
         }
 
         // Calcula iniciativa
@@ -74,37 +108,36 @@ public class Combate {
                 // Turno do herói
                 Heroi.InicioTurno();
                 if(!stun){
+                    while(opcao == 0){
                     Menus.menuCombate();
-                    switch (opcao) {
-                        case 1:
-                            opcao = -1;
-                            tmpAtk = Heroi.getAtk() + 1;
-                            if (Heroi.getDmg() > 0) {
-                                tmpDmg = Heroi.getDmg();
-                            }
-                            if (Heroi.getDmg() <= 0) {
-                                tmpDmg = 1;
-                            }
-                            atacou = true;
-                            break;
-                        case 2:
-                            opcao = -1;
-                            if (Heroi.getAtk() > 0) {
-                                tmpAtk = Heroi.getAtk();
-                            }
-                            if (Heroi.getAtk() <= 0) {
-                                tmpAtk = 1;
-                            }
-                            tmpDmg = Heroi.getDmg() + 1;
-                            atacou = true;
-                            break;
-                        case 3:
-                            opcao = -1;
-                            Heroi.riseDef();
-                            break;
-                        default:
-                            opcao = -1;
-                            break;
+                        switch (opcao) {
+                            case 1:
+                                opcao = -1;
+                                tmpAtk = Heroi.getAtk() + 1;
+                                if (Heroi.getDmg() > 0) {
+                                    tmpDmg = Heroi.getDmg();
+                                }
+                                if (Heroi.getDmg() <= 0) {
+                                    tmpDmg = 1;
+                                }
+                                atacou = true;
+                                break;
+                            case 2:
+                                opcao = -1;
+                                if (Heroi.getAtk() > 0) {
+                                    tmpAtk = Heroi.getAtk();
+                                }
+                                if (Heroi.getAtk() <= 0) {
+                                    tmpAtk = 1;
+                                }
+                                tmpDmg = Heroi.getDmg() + 1;
+                                atacou = true;
+                                break;
+                            case 3:
+                                opcao = -1;
+                                Heroi.riseDef();
+                                break;
+                        }
                     }
                     //Calcula ataque do jogador contra a defesa do inimigo
                     if (atacou) {
