@@ -124,8 +124,8 @@ public class Menus {
             e.printStackTrace();
         }
     }
-    //    Método que apresenta a introdução da história
-    public static void introducaoHistoria() {
+//    Método que apresenta a introdução da história
+    public static void iniciodaJornada(){
         System.out.println(separador());
         System.out.println("Em uma pacata vila, Senhor Jones, um simples pescador, se entristece com tanta sujeira e poluição na praia.");
         loading(3000);
@@ -330,6 +330,8 @@ public class Menus {
                     loading(3000);
                     System.out.println("\"Muito obrigado, senhor!\" - diz um deles.");
                     loading(3000);
+                    System.out.println("Azevedo: Não sei como te agradecer, senhor. Tome, pegue isto para se proteger desse lixo todo.");
+                    loading(2000);
                     System.out.println("Você recebe: Mantos reforçados.");
                     Inventario.adcItem("Mantos reforçados");
                     resolveuOrla = true;
@@ -343,16 +345,19 @@ public class Menus {
                 case 3:
                     System.out.println("Azevedo: O nome dele é Henry. Ele estava vestindo um casaco preto e um tênis amarelo da marca New Horizon.");
                     loading(2000);
+                    System.out.println("Azevedo: A última vez que foi visto, foi perto da Gruta Poluída.");
+                    loading(2000);
                     break;
                 default:
                     System.out.println("Opção inválida.");
             }
         }
-        System.out.println("Você retorna ao centro da praia.");
+        System.out.println("Você retorna ao centro da praia e parte a caminho do píer.");
         loading(2000);
+        acessarPier();
     }
 
-    // Gruta Poluída
+    // Missão: resgate do soldado Henry
     public static void grutaPoluida() {
         boolean encontrouAmigo = false;
         boolean foiDireita = false;
@@ -361,6 +366,10 @@ public class Menus {
 
         while (!encontrouAmigo) {
             System.out.println(separador());
+            System.out.println("Senhor Jones parte até a gruta.");
+            loading(3000);
+            System.out.println("O caminho fedia e estava infestado de lixo. Mas Senhor Jones chega ao local.");
+            loading(3000);
             System.out.println("Você está dentro da Gruta Poluída. Três caminhos diante de você:");
             System.out.println("1 - Caminho da direita");
             System.out.println("2 - Caminho do meio");
@@ -424,8 +433,190 @@ public class Menus {
     public static void acessarPier() {
         System.out.println(separador());
         System.out.println("Com coragem renovada, Senhor Jones finalmente se aproxima do píer...");
+        loading(3000);
+        System.out.println("A madeira do píer está coberta de sujeira e garrafas jogadas ao vento.");
+        loading(2000);
+        System.out.println("Mas com o Coletor de Lixo em mãos, ele poderá limpar o caminho.");
+        loading(3000);
+        System.out.println("Ao tentar entrar, um ser brilhante aparece diante dele...");
+        loading(3000);
+        System.out.println("??? : Você, nobre guerreiro, desejas eliminar todo mal e poluição deste lugar?");
+        loading(3000);
+        System.out.println("??? : Mas antes, terá que passar por um desafio.");
+        loading(2000);
+        System.out.println("Senhor Jones: E quem é você?");
+        loading(2000);
+        System.out.println("Mestre da Reciclagem: Sou o Mestre da Reciclagem, guardião do píer!");
+        loading(3000);
+        System.out.println("Senhor Jones: Espera aí!");
+        loading(2000);
+        System.out.println("Senhor Jones: ....");
+        loading(3000);
+        System.out.println("Senhor Jones: Você não é o seu Joaquim que trabalha no açougue?");
+        loading(3000);
+        System.out.println("Mestre da Reciclagem: Não.");
+        loading(3000);
+        System.out.println("Senhor Jones: Claro que é. Você tá fedendo com essas roupas.");
+        loading(2000);
+        System.out.println("Mestre da Reciclagem: CALADO! Apenas aceite o desafio para passar para o píer.");
+        loading(3000);
+        System.out.println("Senhor Jones: Tá, vamos nessa.");
+        loading(2000);
+        desafioReciclagem();
     }
 
+    // Desafio de reciclagem com o Mestre da Reciclagem
+    public static int lerEscolhaValida() {
+        int escolha = 0;
+        boolean valido = false;
+        while (!valido) {
+            try {
+                escolha = Entrada.entradaInt();
+                if (escolha >= 1 && escolha <= 5) {
+                    valido = true;
+                } else {
+                    System.out.println("Opção inválida! Digite um número entre 1 e 5.");
+                }
+            } catch (Exception e) {
+                System.out.println("Entrada inválida! Digite um número entre 1 e 5.");
+                // evitar errinhos bestas
+            }
+        }
+        return escolha;
+    }
 
+    public static void desafioReciclagem() {
+        System.out.println(separador());
+        System.out.println("Mestre da Reciclagem: Antes de começarmos, escute com atenção, jovem guerreiro...");
+        loading(2000);
+        System.out.println("Essas são as cores das lixeiras e seus materiais:");
+        System.out.println("1) Azul     - Papéis e papelão");
+        System.out.println("2) Vermelho - Plásticos");
+        System.out.println("3) Verde    - Vidros");
+        System.out.println("4) Amarelo  - Metais");
+        System.out.println("5) Marrom   - Lixo orgânico");
+        loading(3500);
+        System.out.println("Mestre da Reciclagem: Agora, mostre que você é digno de seguir adiante!");
+        loading(1500);
+
+        // PERGUNTA 1
+        System.out.println(separador());
+        System.out.println("Mestre da Reciclagem: Em qual lixeira devo jogar uma Garrafa PET?");
+        System.out.println("1) Azul\n2) Vermelho\n3) Verde\n4) Amarelo\n5) Marrom");
+        int escolha1 = 0;
+        while (escolha1 != 2) {
+            escolha1 = lerEscolhaValida();
+            if (escolha1 == 2) {
+                System.out.println("Mestre da Reciclagem: Muito bem! Garrafa PET vai na lixeira vermelha.");
+            } else {
+                System.out.println("Mestre da Reciclagem: Você errou! Tente novamente.");
+            }
+        }
+        loading(1500);
+
+        // PERGUNTA 2
+        System.out.println(separador());
+        System.out.println("Mestre da Reciclagem: E um jornal velho?");
+        System.out.println("1) Azul\n2) Vermelho\n3) Verde\n4) Amarelo\n5) Marrom");
+        int escolha2 = 0;
+        while (escolha2 != 1) {
+            escolha2 = lerEscolhaValida();
+            if (escolha2 == 1) {
+                System.out.println("Mestre da Reciclagem: Correto! Papel vai na lixeira azul.");
+            } else {
+                System.out.println("Mestre da Reciclagem: Tente novamente.");
+            }
+        }
+        loading(1500);
+
+        // PERGUNTA 3
+        System.out.println(separador());
+        System.out.println("Mestre da Reciclagem: Restos de comida?");
+        System.out.println("1) Azul\n2) Vermelho\n3) Verde\n4) Amarelo\n5) Marrom");
+        int escolha3 = 0;
+        while (escolha3 != 5) {
+            escolha3 = lerEscolhaValida();
+            if (escolha3 == 5) {
+                System.out.println("Mestre da Reciclagem: Exato! Lixo orgânico vai na marrom.");
+            } else {
+                System.out.println("Mestre da Reciclagem: Tente novamente.");
+            }
+        }
+        loading(1500);
+
+        // PERGUNTA 4
+        System.out.println(separador());
+        System.out.println("Mestre da Reciclagem: E um pote de vidro?");
+        System.out.println("1) Azul\n2) Vermelho\n3) Verde\n4) Amarelo\n5) Marrom");
+        int escolha4 = 0;
+        while (escolha4 != 3) {
+            escolha4 = lerEscolhaValida();
+            if (escolha4 == 3) {
+                System.out.println("Mestre da Reciclagem: Muito bem! Vidros vão na lixeira verde.");
+            } else {
+                System.out.println("Mestre da Reciclagem: Tente novamente.");
+            }
+        }
+        loading(1500);
+
+        // PERGUNTA 5
+        System.out.println(separador());
+        System.out.println("Mestre da Reciclagem: E uma latinha de refrigerante?");
+        System.out.println("1) Azul\n2) Vermelho\n3) Verde\n4) Amarelo\n5) Marrom");
+        int escolha5 = 0;
+        while (escolha5 != 4) {
+            escolha5 = lerEscolhaValida();
+            if (escolha5 == 4) {
+                System.out.println("Mestre da Reciclagem: Exatamente! Metais vão na amarela.");
+            } else {
+                System.out.println("Mestre da Reciclagem: Tente novamente.");
+            }
+        }
+
+        System.out.println("Mestre da Reciclagem: Muito bem, guerreiro. A passagem está liberada.");
+        loading(2000);
+        System.out.println("Mestre da Reciclagem: Mas antes, pegue isto, você vai precisar....");
+        loading(2000);
+        Inventario.adcItem("Cura Grande");
+        Inventario.adcItem("Poção de Precisão");
+        System.out.println("Você recebeu uma poção de cura grande e uma poção de precisão!");
+        loading(2000);
+        avancarPierFinal();
+    }
+
+    // Caminhada e batalha final do capítulo 1
+    public static void avancarPierFinal() {
+        System.out.println(separador());
+        System.out.println("Senhor Jones atravessa os portões do píer.");
+        loading(2000);
+        System.out.println("Com sua grande determinação, ele começa a limpar o caminho, passo a passo...");
+        loading(3000);
+        System.out.println("Sacos plásticos voam, latas rolam por entre seus pés, mas ele não para.");
+        loading(3000);
+        System.out.println("Após uma longa caminhada, ele chega ao final do píer.");
+        loading(2000);
+        System.out.println("Diante dele, uma imensa MONTANHA de garrafas PET se move...");
+        loading(3000);
+        System.out.println("Delas, se ergue uma criatura grotesca, feita inteiramente de plástico sujo e deformado.");
+        loading(1500);
+        System.out.println("\n\n===== BOSS =====");
+        System.out.println("     O GOLEM DE PLÁSTICO!\n");
+        loading(2000);
+        new Combate("Golem");
+        loading(2000);
+        System.out.println("Após uma batalha intensa, Senhor Jones destrói o Golem de Plástico!");
+        loading(3000);
+        System.out.println("A montanha de lixo desmorona. Um raio de sol rompe as nuvens pela primeira vez em dias.");
+        loading(3000);
+        System.out.println("Senhor Jones percebe que a água está com um resíduos pesados e com aspectos gordurosos.");
+        loading(3000);
+        System.out.println("Senhor Jones tenta avistar a origem desse problema e assustadoramente...");
+        loading(3500);
+        System.out.println("Senhor Jones: A fábrica do meu irmão...?");
+        loading(3000);
+        System.out.println("FIM DO CAPÍTULO 1.");
+    }
 
 }
+
+
