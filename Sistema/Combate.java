@@ -30,7 +30,7 @@ public class Combate {
                 break;
             case "Braço":
                 InimigoAtual = new BracosRobos();
-                System.out.println("\nUma parede de braços te encara!");
+                System.out.println("\nUma parede de braços se prepara pra te atacar!");
                 break;
             case "Trabalhador":
                 InimigoAtual = new Trabalhador();
@@ -59,6 +59,10 @@ public class Combate {
             case "Boss":
                 InimigoAtual = new Gigaboss();
                 System.out.println("\nO Grande Chefe te encara malignamente!");
+                break;
+            case "Esfinge":
+                InimigoAtual = new EsfingedeLixo();
+                System.out.println("\nA Esfinge de Lixo vai impedir você de passar");
                 break;
             default:
                 InimigoAtual = new Dummy();
