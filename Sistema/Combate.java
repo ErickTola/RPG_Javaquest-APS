@@ -100,6 +100,7 @@ public class Combate {
                 //Verifica se a vida do jogador está acima de 0
                 if (!Heroi.getVivo()) {
                     System.out.println("FIM DE JOGO!");
+                    Heroi.gameOver();
                     break;
                 }
                 ordem = true;
@@ -139,6 +140,7 @@ public class Combate {
                                 break;
                         }
                     }
+                    opcao = 0;
                     //Calcula ataque do jogador contra a defesa do inimigo
                     if (atacou) {
                         if (Heroi.ataque(tmpAtk) >= InimigoAtual.defesa()) {

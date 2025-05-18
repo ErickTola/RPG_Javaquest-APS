@@ -1,5 +1,7 @@
 package Sistema;
 
+import java.util.Arrays;
+
 public class Inventario {
 
     public static String invConsumiveis[] = new String[15];
@@ -28,6 +30,10 @@ public class Inventario {
                 }
             }
     }
+
+    public static void clearInv(){ // Limpa o inventário
+        Arrays.fill(invConsumiveis, null);
+        }
 
     public static void rmvItemNome(String x){ // Remove o item do inventário pelo nome
         int indice = 0;

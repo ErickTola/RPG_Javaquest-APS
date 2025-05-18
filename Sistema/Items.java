@@ -73,6 +73,10 @@ public abstract class  Items {
                 Heroi.setDef(4);
                 Heroi.riseMaxHp(20);
                 break;
+            case "Nenhum":
+                Heroi.setAnelAtual(item);
+                Heroi.setAgl(1);
+                break;
             case "Anel da Rapidez":
                 Heroi.setAnelAtual(item);
                 Heroi.setAgl(2);

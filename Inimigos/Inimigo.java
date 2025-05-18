@@ -13,7 +13,7 @@ public abstract class Inimigo { // (Classe abstrata)
      int agl;
      int dmg;
      int atkUsado;
-     public boolean perdeVez;
+     public boolean perdeVez = false;
      String nome;
      public boolean vivo = true;
 

@@ -2,6 +2,7 @@ package Sistema;
 
 public class Menus {
     static int escolhaMenu = 0;
+    static boolean skip = true;
 
     public static String separador(){
         String sep = "";
@@ -89,8 +90,6 @@ public class Menus {
                 }else{
                     System.out.println("Inventário vazio!");
                     Combate.opcao = 0;
-                    menuCombate();
-
                 }
             default:
                 menuCombate();
@@ -119,13 +118,16 @@ public class Menus {
     // Método utilizado para adicionar pausas
     public static void loading(int ms) {
         try {
-            Thread.sleep(ms);
+            if(!skip) {
+                Thread.sleep(ms);
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 //    Método que apresenta a introdução da história
-    public static void iniciodaJornada(){
+    public static int iniciodaJornada(){
+        Heroi.gameInit();
         System.out.println(separador());
         System.out.println("Em uma pacata vila, Senhor Jones, um simples pescador, se entristece com tanta sujeira e poluição na praia.");
         loading(3000);
@@ -139,10 +141,11 @@ public class Menus {
 
         // Chama o método para a interação na praia
         introducaoPraia();
+        return 0;
     }
 
     // Método para introduzir a situação da praia poluída e a criança
-    public static void introducaoPraia() {
+    public static int introducaoPraia() {
         System.out.println(separador());
         System.out.println("Para início de sua jornada, Senhor Jones desce até a praia principal na costa de sua vila. O ar está denso e a água cheia de resíduos.");
         loading(3000);
@@ -175,10 +178,11 @@ public class Menus {
         } else {
             ignorarPIVETE();
         }
+        return 0;
     }
 
     // Método quando o jogador escolhe ajudar a criança
-    public static void ajudarPIVETE() {
+    public static int ajudarPIVETE() {
         System.out.println(separador());
         System.out.println("A criança, aliviada, diz:");
         System.out.println("Criança assustada: Aqui, moço, pegue isso!");
@@ -202,27 +206,30 @@ public class Menus {
         loading(2500);
         combateSlime(); // Inicia o combate com o Slime
         avancarCentroDaPraia(); // CONTINUA a história normal para ambos
+        return 0;
     }
 
     // Método quando o jogador escolhe ignorar a criança
-    public static void ignorarPIVETE() {
+    public static int ignorarPIVETE() {
         System.out.println(separador());
         System.out.println("Senhor Jones: Desculpa guri, tenho outras coisas para fazer.");
         System.out.println("Você ignora a criança e segue adiante.");
         avancarCentroDaPraia(); // CONTINUA a história normal para ambos
+        return 0;
     }
 
     // Método que inicia o combate com o Slime de Chorume
-    public static void combateSlime() {
+    public static int combateSlime() {
         System.out.println(separador());
         System.out.println("Com seu pedaço de madeira em mãos, Senhor Jones se prepara para iniciar o seu primeiro combate nessa grande jornada.");
         loading(2000);
         System.out.println("O Slime de Chorume começa a se mover em sua direção, pronto para atacar!");
         // Inicia o combate com o Slime de Chorume
         new Combate("Slime");  // Chama o método de combate
+        return 0;
     }
     // Após o evento com a criança
-    public static void avancarCentroDaPraia() {
+    public static int avancarCentroDaPraia() {
         System.out.println(separador());
         System.out.println("Senhor Jones segue até o centro da praia. A visão é ainda pior: lixo por todos os lados e um cheiro insuportável no ar.");
         loading(3000);
@@ -231,6 +238,7 @@ public class Menus {
 
         // Começar escolha das próximas rotas
         explorarCentroPraia(false, false);
+        return 0;
     }
 
     // Função com as escolhas/ramificações
@@ -263,7 +271,7 @@ public class Menus {
             case 3:
                 if (foiQuiosque && foiOrla) {
                     acessarPier();
-                    return; // fim das escolhas
+                    break; // fim das escolhas
                 } else {
                     System.out.println("Senhor Jones: O píer está muito sujo... ainda não estou pronto para ir até lá.");
                     loading(2000);
@@ -358,7 +366,7 @@ public class Menus {
     }
 
     // Missão: resgate do soldado Henry
-    public static void grutaPoluida() {
+    public static int grutaPoluida() {
         boolean encontrouAmigo = false;
         boolean foiDireita = false;
         boolean foiMeio = false;
@@ -396,6 +404,7 @@ public class Menus {
                     } else {
                         System.out.println("Você vai pelo meio e um Slime de Chorume salta do chão!");
                         new Combate("Slime");
+                        if (!Heroi.getVivo()){return 0;}
                         System.out.println("Você venceu e ele dropou Poção de Força!");
                         Inventario.adcItem("Poção de Força");
                         foiMeio = true;
@@ -416,6 +425,7 @@ public class Menus {
                         loading(2000);
                         System.out.println("Enquanto saem da gruta, um Mago de Sujeira aparece para impedi-los!");
                         new Combate("Mago");
+                        if (!Heroi.getVivo()){return 0;}
                         loading(2000);
                         System.out.println("Você vence a batalha e adquire o item: Coletor de Lixo!");
                         Inventario.adcItem("Coletor de Lixo");
@@ -427,6 +437,7 @@ public class Menus {
                     System.out.println("Opção inválida.");
             }
         }
+        return 0;
     }
 
     // Pier (liberado apenas depois de visitar os dois anteriores)
@@ -585,7 +596,7 @@ public class Menus {
     }
 
     // Caminhada e batalha final do capítulo 1
-    public static void avancarPierFinal() {
+    public static int avancarPierFinal() {
         System.out.println(separador());
         System.out.println("Senhor Jones atravessa os portões do píer.");
         loading(2000);
@@ -603,6 +614,7 @@ public class Menus {
         System.out.println("     O GOLEM DE PLÁSTICO!\n");
         loading(2000);
         new Combate("Golem");
+        if (!Heroi.getVivo()){return 0;}
         loading(2000);
         System.out.println("Após uma batalha intensa, Senhor Jones destrói o Golem de Plástico!");
         loading(3000);
@@ -615,6 +627,7 @@ public class Menus {
         System.out.println("Senhor Jones: A fábrica do meu irmão...?");
         loading(3000);
         System.out.println("FIM DO CAPÍTULO 1.");
+        return 0;
     }
 
 }

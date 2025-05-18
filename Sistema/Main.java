@@ -2,6 +2,9 @@ package Sistema;
 
 public class Main {
     public static void main(String[] args) {
-        Menus.acessarPier();
+
+        while(true) {
+            Menus.acessarPier();
+        }
     }
 }

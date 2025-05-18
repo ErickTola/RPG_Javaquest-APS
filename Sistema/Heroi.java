@@ -1,5 +1,6 @@
 package Sistema;
 import java.util.Arrays;
+import java.util.InvalidPropertiesFormatException;
 import java.util.Random;
 
 public class Heroi {
@@ -200,6 +201,33 @@ public class Heroi {
         defRose = true;
         def += 1;
         System.out.println("Você se prepara para se defender!");
+    }
+
+    public static void gameInit(){
+        vivo = true;
+    }
+
+    public static void gameOver(){
+         maxHp = 35;
+         Items.equipItem("Peçaço de Madeira");
+         Items.equipItem("Roupas Comuns");
+         Items.equipItem("Nenhum");
+         hp = 35;
+         atk = 1;
+         def = 1;
+         agl = 1;
+         dmg = 1;
+         debuffInit = 0;
+         debuffTempo = 0;
+         desvantagem = false;
+         buffInit = 0;
+         buffTempo = 0;
+         vantagem = false;
+         vivo = false;
+         defRose = false;
+         veneno = false;
+         dmgVeneno = 0;
+         Inventario.clearInv();
     }
 
     // (Encapsulamento das variáveis.)
