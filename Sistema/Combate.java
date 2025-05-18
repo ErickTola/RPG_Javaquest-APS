@@ -2,6 +2,7 @@ package Sistema;
 import Inimigos.*;
 
 public class Combate {
+    //
     static int TurnoAtual = 1;
     public Inimigo InimigoAtual; // Declaração de váriavel com o tipo da classe
     int initHero;

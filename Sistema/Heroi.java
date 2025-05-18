@@ -196,7 +196,7 @@ public class Heroi {
         }
 
     }
-
+//
     public static void riseDef(){
         defRose = true;
         def += 1;

@@ -143,7 +143,7 @@ public class Menus {
         introducaoPraia();
         return 0;
     }
-
+//
     // Método para introduzir a situação da praia poluída e a criança
     public static int introducaoPraia() {
         System.out.println(separador());

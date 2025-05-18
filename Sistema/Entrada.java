@@ -3,7 +3,7 @@ package Sistema;
 import java.util.Scanner;
 
 public class Entrada {
-
+//
     static Scanner scn = new Scanner(System.in);
 
     //Função para conseguirmos o valor de entrada inteiro do jogador de maneira que não ocorram erros caso o mesmo digite algo que não sejam números inteiros.

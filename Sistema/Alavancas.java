@@ -1,5 +1,5 @@
 package Sistema;
-
+//
 public class Alavancas {
 
     static boolean[] estado = {false,true,false,false,true};
