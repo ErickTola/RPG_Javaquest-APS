@@ -278,6 +278,12 @@ public class Heroi {
         atk = x;
     }//(Metodo "setter" / Encapsulamento)
 
+    public static void setDesv(boolean x){desvantagem = x;};
+
+    public static void setVeneno(boolean x){veneno = x;};
+
+    public static void setVantagem(boolean x){vantagem = x;};
+
     public static void setDmg(int x){
         dmg = x;
     }//(Metodo "setter" / Encapsulamento)

@@ -135,6 +135,9 @@ public class Combate {
                         //Verifica se a vida do inimigo está acima de 0 e termina o combate
                         if (!InimigoAtual.vivo) {
                             System.out.println("Você derrotou o " + InimigoAtual.getNome() + "!");
+                            Heroi.setDesv(false);
+                            Heroi.setVantagem(false);
+                            Heroi.setVeneno(false);
                             break;
                         }
 

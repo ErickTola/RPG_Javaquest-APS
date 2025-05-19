@@ -2,7 +2,7 @@ package Sistema;
 
 public class Menus {
     static int escolhaMenu = 0; // Utilizado nas entradas do menu
-    static boolean skip = false; // Função de depuração, utilizada para desabilitar o tempo de espera entre dialogos.
+    static boolean skip = true; // Função de depuração, utilizada para desabilitar o tempo de espera entre dialogos.
     static boolean fimJogo = false; // Utilizada para definir se o jogador chegou ao final do jogo e sair do programa.
 
     public static String separador(){
@@ -611,6 +611,9 @@ public class Menus {
         Inventario.adcItem("Cura Grande");
         Inventario.adcItem("Poção de Precisão");
         System.out.println("Você recebeu uma poção de cura grande e uma poção de precisão!");
+        loading(2000);
+        System.out.println("Você descansa e se sente totalmente revigorado!");
+        Heroi.adcVida(35);
         loading(2000);
         avancarPierFinal();
     }
