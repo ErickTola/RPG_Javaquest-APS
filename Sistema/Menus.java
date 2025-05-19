@@ -1,9 +1,9 @@
 package Sistema;
 
 public class Menus {
-    static int escolhaMenu = 0;
-    static boolean skip = true;
-    static boolean fimJogo = false;
+    static int escolhaMenu = 0; // Utilizado nas entradas do menu
+    static boolean skip = false; // Função de depuração, utilizada para desabilitar o tempo de espera entre dialogos.
+    static boolean fimJogo = false; // Utilizada para definir se o jogador chegou ao final do jogo e sair do programa.
 
     public static String separador(){
         String sep = "";
@@ -111,11 +111,14 @@ public class Menus {
         System.out.println("Equipamento:\n");
         System.out.println("Arma: " + Heroi.getArmaAtual() +" | "+ Items.descItem(Heroi.getArmaAtual()));
         System.out.println("Armadura: " + Heroi.getArmaduraAtual() +" | "+ Items.descItem(Heroi.getArmaduraAtual()));
-        System.out.print("Anel: " + Heroi.getAnelAtual());
         if (Heroi.getAnelAtual() != "Nenhum"){
-            System.out.println(" | "+ Items.descItem(Heroi.getAnelAtual()));
+            System.out.println("Anel: " + Heroi.getAnelAtual() + " | "+ Items.descItem(Heroi.getAnelAtual()) + "\n");
+        }else{
+            System.out.print("Anel: " + Heroi.getAnelAtual() + "\n\n");
         }
-    }
+        System.out.print("Digite qualquer tecla para continuar: ");
+        Entrada.entradaStr();
+        }
     // Método utilizado para adicionar pausas
     public static void loading(int ms) {
         try {
@@ -228,6 +231,9 @@ public class Menus {
         System.out.println("O Slime de Chorume começa a se mover em sua direção, pronto para atacar!");
         // Inicia o combate com o Slime de Chorume
         new Combate("Slime");  // Chama o método de combate
+        if (!Heroi.getVivo()){return 0;}
+        loading(2000);
+        menuStats();
         return 0;
     }
     // Após o evento com a criança
@@ -416,6 +422,8 @@ public class Menus {
                         System.out.println("Você vai pelo meio e um Slime de Chorume salta do chão!");
                         new Combate("Slime");
                         if (!Heroi.getVivo()){return 0;}
+                        loading(2000);
+                        menuStats();
                         System.out.println("Você venceu e ele dropou Poção de Força!");
                         Inventario.adcItem("Poção de Força");
                         foiMeio = true;
@@ -438,6 +446,7 @@ public class Menus {
                         new Combate("Mago");
                         if (!Heroi.getVivo()){return 0;}
                         loading(2000);
+                        menuStats();
                         System.out.println("\nVocê vence a batalha e adquire o item: Coletor de Lixo!");
                         Items.equipItem("Coletor de Lixo");
                         encontrouAmigo = true;
@@ -627,6 +636,7 @@ public class Menus {
         new Combate("Golem");
         if (!Heroi.getVivo()){return 0;}
         loading(2000);
+        menuStats();
         System.out.println("\nApós uma batalha intensa, Senhor Jones destrói o Golem de Plástico!");
         loading(3000);
         System.out.println("A montanha de lixo desmorona. Um raio de sol rompe as nuvens pela primeira vez em dias.");
@@ -665,6 +675,7 @@ public class Menus {
         new Combate("Braço");
         if (!Heroi.getVivo()){return 0;}
         loading(3000);
+        menuStats();
         System.out.println("\nCom coragem e engenhosidade, Senhor Jones derrota a criatura da fábrica.\n");
         loading(3000);
         System.out.println("Os sons da hidrelétrica chamam a atenção do Senhor Jones, que decide entrar no gerador para analisar a situação do local.\n");
@@ -720,6 +731,8 @@ public class Menus {
                 System.out.println("Errado! Francamente, e ainda se dizem a raça mais evoluída...");
                 new Combate("Esfinge");
                 if (!Heroi.getVivo()){return 0;}
+                loading(2000);
+                menuStats();
 
             }
         Inventario.adcItem("Cura Grande");
@@ -753,6 +766,8 @@ public class Menus {
         System.out.println("Jones: Veremos!");
         new Combate("Boss");
         if (!Heroi.getVivo()){return 0;}
+        loading(2000);
+        menuStats();
         System.out.println("Após uma luta árdua com seu irmão, Jones sai vitorioso, prende seu irmão e espera a chegada da polícia ambiental.\n");
         loading(3000);
         System.out.println("Antes da chegada da polícia, eles conseguem ter um breve diálogo.\n");

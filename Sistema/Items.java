@@ -2,7 +2,8 @@ package Sistema;
 
 public abstract class  Items {
 
-
+    //Executa uma tarefa (Como recuperar a vida do jogador) a partir do nome indicado, utilizando dos metodos criados na classe "Heroi".
+    //Metodo para utilizar itens consumíveis.
     public static void usaItem(String item){
 
         switch(item){
@@ -22,12 +23,6 @@ public abstract class  Items {
             case "Poção de Força":
                 Heroi.aplVan(5,1,"dmg");
                 break;
-            case "Poção de Defesa":
-                Heroi.aplVan(5,1,"def");
-                break;
-
-
-
             default:
                 System.out.println("Item inválido");
                 break;
@@ -35,6 +30,8 @@ public abstract class  Items {
 
     }
 
+    //Executa uma tarefa (Como aumentar o dano do jogador) a partir do nome indicado, utilizando dos metodos criados na classe "Heroi".
+    //Metodo para equipar armas, armaduras e aneis.
     public static void equipItem(String item){
 
         switch (item){
@@ -50,23 +47,10 @@ public abstract class  Items {
                 Heroi.setArmaAtual(item);
                 Heroi.setDmg(4);
                 break;
-            case "Lança de Circuítos":
-                Heroi.setArmaAtual(item);
-                Heroi.setDmg(3);
-                break;
-            case "Braço Robótico":
-                Heroi.setArmaAtual(item);
-                Heroi.setAtk(3);
-                break;
             case "Mantos reforçados":
                 Heroi.setArmaduraAtual(item);
                 Heroi.setDef(2);
                 Heroi.riseMaxHp(5);
-                break;
-            case "Armadura Plástica":
-                Heroi.setArmaduraAtual(item);
-                Heroi.setDef(3);
-                Heroi.riseMaxHp(10);
                 break;
             case "Armadura Robótica":
                 Heroi.setArmaduraAtual(item);
@@ -77,14 +61,6 @@ public abstract class  Items {
                 Heroi.setAnelAtual(item);
                 Heroi.setAgl(1);
                 break;
-            case "Anel da Rapidez":
-                Heroi.setAnelAtual(item);
-                Heroi.setAgl(2);
-                break;
-            case "Anel da Velocidade":
-                Heroi.setAnelAtual(item);
-                Heroi.setAgl(3);
-                break;
             case "Anel de Hermes":
                 Heroi.setAnelAtual(item);
                 Heroi.setAgl(3);
@@ -92,7 +68,7 @@ public abstract class  Items {
 
         }
     }
-//
+    //Retorna a descrição do item do valor de entrada.
     public static String descItem(String item){
         String descricao = "";
         switch (item){
@@ -105,29 +81,14 @@ public abstract class  Items {
             case "Espada de Plástico":
                 descricao = "Uma afiada espada feita de plástico do golem, corta precisamente os inimigos.";
                 break;
-            case "Lança de Circuítos":
-                descricao = "Circuitos eletrônicos podem ser mais afiados do que você imagina!";
-                break;
-            case "Braço Robótico":
-                descricao = "Um braço tecnológico e destrutivo que foi tomado de um robô desavisado.";
-                break;
             case "Roupas Comuns":
                 descricao = "São suas roupas comuns que você sempre usou";
                 break;
             case "Mantos reforçados":
                 descricao = "Vestes de proteção robustas, usadas pelos coletores da praia.";
                 break;
-            case "Armadura Plástica":
-                descricao = "Uma armadura reciclada da carcaça do golem plástico.";
-                break;
             case "Armadura Robótica":
                 descricao = "Uma armadura feita dos restos dos robos infrentados. No peitoral está escrito \"Propriedade de XXXX\"";
-                break;
-            case "Anel da Rapidez":
-                descricao = "Um anel engravado com letras estranhas";
-                break;
-            case "Anel da Velocidade":
-                descricao = "Um anel prateado e com um leve brilho. Usa-lo te faz te sentir mais leve";
                 break;
             case "Anel de Hermes":
                 descricao = "Um anel dourado com marcações em preto. \"Meu precioso!\" ";

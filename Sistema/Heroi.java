@@ -28,6 +28,7 @@ public class Heroi {
     static private boolean veneno = false;
     static private int dmgVeneno = 0;
 
+    //Inicia um objeto gerador de números aleatórios.
     static private final Random HeroRd = new Random(); //(Objeto final)
 
     //Cria um valor aleatório entre 1 e 20, usado para determinar se o ataque acerta o inimigo
@@ -172,6 +173,7 @@ public class Heroi {
 
     }
 
+    //Aplica Vantagens para o jogador.
     public static void aplVan(int dur,int valor, String atrb){
         Heroi.buffInit = Combate.TurnoAtual;
         Heroi.buffTempo = dur;
@@ -196,17 +198,18 @@ public class Heroi {
         }
 
     }
-//
+    //Aumenta a defesa do jogador por um turno
     public static void riseDef(){
         defRose = true;
         def += 1;
         System.out.println("Você se prepara para se defender!");
     }
-
+    //Metodo para resetar a condição de vivo do jogador após um "Game Over"
     public static void gameInit(){
         vivo = true;
     }
 
+    //Metodo para refedifir todos os atributos do jogador após um "Game Over" e ativar a flag de morte.
     public static void gameOver(){
          maxHp = 35;
          Items.equipItem("Peçaço de Madeira");
@@ -233,73 +236,73 @@ public class Heroi {
     // (Encapsulamento das variáveis.)
     public static String getHp(){
         return (hp + "/" + maxHp);
-    }
+    } //(Metodo "getter" / Encapsulamento)
 
     public static int getAtk(){
         return atk;
-    }
+    }//(Metodo "getter" / Encapsulamento)
 
     public static int getDef(){
         return def;
-    }
+    }//(Metodo "getter" / Encapsulamento)
 
     public static int getAgl(){
         return agl;
-    }
+    }//(Metodo "getter" / Encapsulamento)
 
     public static int getDmg(){
         return dmg;
-    }
+    }//(Metodo "getter" / Encapsulamento)
 
     public static int getDebuffInit(){
         return debuffInit;
-    }
+    }//(Metodo "getter" / Encapsulamento)
 
     public static boolean getVivo(){
         return vivo;
-    }
+    }//(Metodo "getter" / Encapsulamento)
 
-    public static String getArmaAtual() {
+    public static String getArmaAtual() {//(Metodo "getter" / Encapsulamento)
         return armaAtual;
     }
 
-    public static String getArmaduraAtual() {
+    public static String getArmaduraAtual() {//(Metodo "getter" / Encapsulamento)
         return armaduraAtual;
     }
 
-    public static String getAnelAtual() {
+    public static String getAnelAtual() {//(Metodo "getter" / Encapsulamento)
         return anelAtual;
     }
 
     public static void setAtk(int x){
         atk = x;
-    }
+    }//(Metodo "setter" / Encapsulamento)
 
     public static void setDmg(int x){
         dmg = x;
-    }
+    }//(Metodo "setter" / Encapsulamento)
 
     public static void setDef(int x){
         def = x;
-    }
+    }//(Metodo "setter" / Encapsulamento)
 
     public static void setAgl(int x){
         agl = x;
-    }
+    }//(Metodo "setter" / Encapsulamento)
 
     public static void riseMaxHp(int x){
         maxHp += x;
-    }
+    }//Metodo utilizado para aumentar a vida maxima do jogador
 
-    public static void setArmaAtual(String armaAtual) {
+    public static void setArmaAtual(String armaAtual) {//(Metodo "setter" / Encapsulamento)
         Heroi.armaAtual = armaAtual;
     }
 
-    public static void setArmaduraAtual(String armaduraAtual) {
+    public static void setArmaduraAtual(String armaduraAtual) {//(Metodo "setter" / Encapsulamento)
         Heroi.armaduraAtual = armaduraAtual;
     }
 
-    public static void setAnelAtual(String anelAtual) {
+    public static void setAnelAtual(String anelAtual) {//(Metodo "setter" / Encapsulamento)
         Heroi.anelAtual = anelAtual;
     }
 }
