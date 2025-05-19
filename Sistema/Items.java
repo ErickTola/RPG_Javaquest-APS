@@ -44,11 +44,11 @@ public abstract class  Items {
                 break;
             case "Coletor de Lixo":
                 Heroi.setArmaAtual(item);
-                Heroi.setAtk(2);
+                Heroi.setAtk(3);
                 break;
             case "Espada de Plástico":
                 Heroi.setArmaAtual(item);
-                Heroi.setDmg(2);
+                Heroi.setDmg(4);
                 break;
             case "Lança de Circuítos":
                 Heroi.setArmaAtual(item);
@@ -87,7 +87,7 @@ public abstract class  Items {
                 break;
             case "Anel de Hermes":
                 Heroi.setAnelAtual(item);
-                Heroi.setAgl(4);
+                Heroi.setAgl(3);
                 break;
 
         }

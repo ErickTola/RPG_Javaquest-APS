@@ -3,6 +3,7 @@ package Sistema;
 public class Menus {
     static int escolhaMenu = 0;
     static boolean skip = true;
+    static boolean fimJogo = false;
 
     public static String separador(){
         String sep = "";
@@ -138,9 +139,9 @@ public class Menus {
         System.out.println("\n\n===== CAPÍTULO 1 =====");
         System.out.println("      A Praia Poluída\n");
         loading(3000);
-
         // Chama o método para a interação na praia
         introducaoPraia();
+        terrenoFabrica();
         return 0;
     }
 //
@@ -189,7 +190,7 @@ public class Menus {
         loading(3000);
         System.out.println("A criança lhe entrega um pedaço de madeira, sua primeira arma.");
         loading(2500);
-        Inventario.adcItem("Pedaço de Madeira");  // método para adicionar o item ao inventário
+        Items.equipItem("Pedaço de Madeira");  // método para adicionar o item ao inventário
         System.out.println("Você agora está armado com o pedaço de madeira.");
         loading(3000);
         System.out.println("Com o item em mãos, você segue para investigar o monstro.");
@@ -322,6 +323,7 @@ public class Menus {
         loading(2000);
 
         boolean resolveuOrla = false;
+        boolean jaPerguntouSobreDesaparecido = false;
 
         while (!resolveuOrla) {
             System.out.println("1 - Ajudar a encontrar o jovem");
@@ -342,7 +344,7 @@ public class Menus {
                     System.out.println("Azevedo: Não sei como te agradecer, senhor. Tome, pegue isto para se proteger desse lixo todo.");
                     loading(2000);
                     System.out.println("Você recebe: Mantos reforçados.");
-                    Inventario.adcItem("Mantos reforçados");
+                    Items.equipItem("Mantos reforçados");
                     resolveuOrla = true;
                     loading(2000);
                     break;
@@ -352,10 +354,16 @@ public class Menus {
                     loading(2000);
                     break;
                 case 3:
-                    System.out.println("Azevedo: O nome dele é Henry. Ele estava vestindo um casaco preto e um tênis amarelo da marca New Horizon.");
-                    loading(2000);
-                    System.out.println("Azevedo: A última vez que foi visto, foi perto da Gruta Poluída.");
-                    loading(2000);
+                    if (jaPerguntouSobreDesaparecido) {
+                        System.out.println("Azevedo: Eu acabei de dizer sobre ele... você está bem?");
+                        loading(2000);
+                    } else {
+                        System.out.println("Azevedo: O nome dele é Henry. Ele estava vestindo um casaco preto e um tênis amarelo da marca New Horizon.");
+                        loading(2000);
+                        System.out.println("Azevedo: A última vez que foi visto, foi perto da Gruta Poluída.");
+                        loading(2000);
+                        jaPerguntouSobreDesaparecido = true;
+                    }
                     break;
                 default:
                     System.out.println("Opção inválida.");
@@ -373,12 +381,12 @@ public class Menus {
         boolean foiMeio = false;
         boolean foiEsquerda = false;
 
-        while (!encontrouAmigo) {
             System.out.println(separador());
             System.out.println("Senhor Jones parte até a gruta.");
             loading(3000);
             System.out.println("O caminho fedia e estava infestado de lixo. Mas Senhor Jones chega ao local.");
             loading(3000);
+            while (!encontrouAmigo) {
             System.out.println("Você está dentro da Gruta Poluída. Três caminhos diante de você:");
             System.out.println("1 - Caminho da direita");
             System.out.println("2 - Caminho do meio");
@@ -393,7 +401,9 @@ public class Menus {
                         loading(2000);
                     } else {
                         System.out.println("Você segue pela direita. O caminho é curto e termina numa parede de pedras.");
+                        loading(2000);
                         System.out.println("Mas encontra uma pequena Poção de Cura!");
+                        loading(2000);
                         Inventario.adcItem("Cura Média");
                         foiDireita = true;
                     }
@@ -428,8 +438,8 @@ public class Menus {
                         new Combate("Mago");
                         if (!Heroi.getVivo()){return 0;}
                         loading(2000);
-                        System.out.println("Você vence a batalha e adquire o item: Coletor de Lixo!");
-                        Inventario.adcItem("Coletor de Lixo");
+                        System.out.println("\nVocê vence a batalha e adquire o item: Coletor de Lixo!");
+                        Items.equipItem("Coletor de Lixo");
                         encontrouAmigo = true;
                         foiEsquerda = true;
                     }
@@ -617,7 +627,7 @@ public class Menus {
         new Combate("Golem");
         if (!Heroi.getVivo()){return 0;}
         loading(2000);
-        System.out.println("Após uma batalha intensa, Senhor Jones destrói o Golem de Plástico!");
+        System.out.println("\nApós uma batalha intensa, Senhor Jones destrói o Golem de Plástico!");
         loading(3000);
         System.out.println("A montanha de lixo desmorona. Um raio de sol rompe as nuvens pela primeira vez em dias.");
         loading(3000);
@@ -627,84 +637,142 @@ public class Menus {
         loading(3500);
         System.out.println("Senhor Jones: A fábrica do meu irmão...?");
         loading(3000);
-        System.out.println("FIM DO CAPÍTULO 1.");
+        System.out.println(" ===== FIM DO CAPÍTULO 1. ===== ");
         return 0;
     }
 
     public static int terrenoFabrica(){
         System.out.println(separador());
-        System.out.println("Após querer ir a origem do problema, Senhor Jones caminha até  à estrada de terra que leva ao terreno da fábrica.");
-        loading(2000);
+        System.out.println(" ===== INÍCIO CAPÍTULO 2 ===== ");
+        System.out.println("      Terreno Fabrica\n");
+        System.out.println("Após querer ir à origem do problema, Senhor Jones caminha até a estrada de terra que leva ao terreno da fábrica.");
+        loading(3000);
         System.out.println("O vento sopra forte, levantando poeira e folhas secas ao seu redor.");
-        loading(2500);
+        loading(3000);
         System.out.println("Ele respira fundo, encara o portão enferrujado e o empurra com força.");
         loading(3000);
-        System.out.println("O portão range, abrindo passagem para um ambiente pesado");
-        loading(2000);
+        System.out.println("O portão range, abrindo passagem para um ambiente pesado.");
+        loading(3000);
         System.out.println("Passo a passo, Senhor Jones avança entre estruturas corroídas e silhuetas metálicas.");
         loading(3000);
         System.out.println("Sons estranhos ecoam... estalos, chiados... como se a fábrica estivesse viva.");
-        loading(2500);
-        System.out.println("Ele avista uma parede com braços roboticos se movimentando estranhamente");
+        loading(3000);
+        System.out.println("Ele avista uma parede com braços robóticos se movimentando estranhamente.");
         loading(3000);
         System.out.println("De repente, o chão treme sob seus pés. Os braços notaram ele.");
-        loading(2000);
+        loading(3000);
+        System.out.println(separador());
         new Combate("Braço");
         if (!Heroi.getVivo()){return 0;}
-        loading(2000);
-        System.out.println("Com coragem e engenhosidade, Senhor Jones derrota a criatura da fabrica.\n");
         loading(3000);
-        System.out.println("Os sons da hidroeletrica chamam atenção do Senhor Jones que decide entrar no gerador para analisar a situação do local\n");
+        System.out.println("\nCom coragem e engenhosidade, Senhor Jones derrota a criatura da fábrica.\n");
         loading(3000);
-        System.out.println("Ao entrar no gerador avista um empregado cabisbaixo sentado ao lado do dinamo, ele parece estar analisando a água poluida....  \n");
+        System.out.println("Os sons da hidrelétrica chamam a atenção do Senhor Jones, que decide entrar no gerador para analisar a situação do local.\n");
         loading(3000);
-        System.out.println("Senhor Jones: Oque o senhor faz aqui?, era pra essa fabrica estar em evacuação devido ao estado do ambiente ao redor");
+        System.out.println("Ao entrar no gerador, avista um empregado cabisbaixo sentado ao lado do dínamo. Ele parece estar analisando a água poluída...\n");
         loading(3000);
-        System.out.println("O empregado se levante, vira pra ele e diz: Sabe, essas águas costumavam ser tão limpas, agora não serve nem pra irrigar uma planta.");
+        System.out.println("Senhor Jones: O que o senhor faz aqui? Era pra essa fábrica estar em evacuação devido ao estado do ambiente ao redor.");
         loading(3000);
-        System.out.println("Senhor Jones avista o nome dele no crachá: Senhor Erick, eletricista Sênior");
+        System.out.println("O empregado se levanta, vira pra ele e diz: Sabe, essas águas costumavam ser tão limpas, agora não servem nem pra irrigar uma planta.");
         loading(3000);
-        System.out.println("Erick: Eu assinei os relatorios que ignoravam o estado da água. eu ajudei a matar isso aqui.");
+        System.out.println("Senhor Jones avista o nome dele no crachá: Senhor Erick, eletricista sênior.");
         loading(3000);
-        System.out.println("Jones: Ainda temos chances de reverter a situação, irei chegar ao final da fabrica e resovler tudo, pode confiar em mim!");
+        System.out.println("Erick: Eu assinei os relatórios que ignoravam o estado da água. Eu ajudei a matar isso aqui.");
         loading(3000);
-        System.out.println("Erick: estou contando com isso! pegue isso para voce, talvez possa te ajudar");
-        Inventario.adcItem("Espada de Plástico");
-        System.out.println("\n Voce ganhou um novo item, uma afiada espada feita de plástico reciclado, corta precisamente os inimigos.\n");
+        System.out.println("Jones: Ainda temos chances de reverter a situação. Irei chegar ao final da fábrica e resolver tudo, pode confiar em mim!");
         loading(3000);
-        System.out.println("Senhor Jones após receber o novo item se sente confiante e avança para o final da fabrica\n");
+        System.out.println("Erick: Estou contando com isso! Pegue isso para você, talvez possa te ajudar.");
+        Items.equipItem("Espada de Plástico");
+        System.out.println("\nVocê ganhou um novo item: uma afiada espada feita de plástico reciclado. Corta precisamente os inimigos.\n");
         loading(3000);
-        System.out.println("Ele se depara com uma especie de esfinge de lixo, formada por tubos de metais, restos de empilhadeiras e lixos do local \n");
-        loading(1000);
+        System.out.println("Senhor Jones, após receber o novo item, se sente confiante e avança para o final da fábrica.\n");
+        loading(3000);
+        System.out.println("Ele se depara com uma espécie de esfinge de lixo, formada por tubos de metais, restos de empilhadeiras e lixo do local.\n");
+        loading(3000);
         System.out.println("Jones sabe que a Esfinge está protegendo o causador de tudo isso!\n");
+        loading(3000);
         System.out.println("Ele avança para falar com ela\n");
         loading(3000);
         System.out.println("Esfinge de Lixo: Ser insignificante, você só passará caso acerte meu enigma e, caso erre... sofrerá as consequências.\n");
-
+        loading(3000);
         // ENIGMA
         System.out.println(separador());
-        System.out.println("Oque é Oque é, sou transformado da essencia da vida, mas não sou um ser vivo?");
-        System.out.println("1) Energia Eolica \n2) Energia Solar \n3) Energia hidreletrica\n4) Amarelo\n5) Marrom");
-        int escolha5 = 0;
-        while (escolha5 != 4) {
-            escolha5 = lerEscolhaValida();
-            if (escolha5 == 4) {
-                System.out.println("Vejo que voce e uma pessoa sabia, pode passar");
+        System.out.println(
+                separador()+
+                        "O que é, o que é?\n" +
+                        "Sou invisível, mas me faço notar,\n" +
+                        "empurro gigantes que dançam sem parar.\n" +
+                        "Não broto da terra, nem brilho como o luar,\n" +
+                        "mas giro com força, sem nunca me cansar.\n\n" +
+                        "\n"+
+                        "1) Energia solar\n" +
+                        "2) Energia hidráulica\n" +
+                        "3) Energia eólica\n" +
+                        "4) Energia de biomassa\n" +
+                        "5) Energia nuclear");
+                        System.out.print("Digite sua escolha: ");
+        int escolhaEnigma = 0;
+                escolhaEnigma = lerEscolhaValida();
+            if (escolhaEnigma == 3) {
+                System.out.println("\nVejo que você é uma pessoa sábia, pode passar, e leve isso com você");
+                loading(3000);
             } else {
-                System.out.println("Errado!,francamente, e ainda se dizem ser a raça mais evoluida,");
+                System.out.println("Errado! Francamente, e ainda se dizem a raça mais evoluída...");
+                new Combate("Esfinge");
+                if (!Heroi.getVivo()){return 0;}
+
             }
-        }
-        new Combate("Esfinge");
-        if (!Heroi.getVivo()){return 0;}
         Inventario.adcItem("Cura Grande");
-        Inventario.adcItem("Armadura Robótica");
+        Items.equipItem("Armadura Robótica");
+        Items.equipItem("Anel de Hermes");
+        System.out.println("Você recebeu uma poção de cura grande, uma Armadura Robótica e Anel de Hermes! (+4 de defesa , +20 de HP e +3 de agilidade!)\n");
+        System.out.println("Você se sente totalmente revigorado!");
+        Heroi.adcVida(100);
+        System.out.println(separador());
+        System.out.println("Após passar pela Esfinge, Jones atravessa a porta que ela estava protegendo e se depara com seu irmão, Jack, o dono da fábrica.\n");
+        loading(3000);
+        System.out.println("Jones sabia que teria que enfrentar Jack para, enfim, acabar com essa poluição em massa.\n");
+        loading(3000);
+        System.out.println("===== FIM DO CAPÍTULO 2.=====\n");
+        loading(2000);
+        System.out.println("===== A BATALHA FINAL =====\n");
+        loading(3000);
+        System.out.println("Jones: Irmão, você nunca se importou com os outros. Não me surpreende você não ligar para o nosso planeta.");
+        loading(3000);
+        System.out.println("Jack: HAHAHAHHHHHA! Imaginei que você viria para me derrotar. Você e esse seu altruísmo patético...");
+        loading(3000);
+        System.out.println("Minha conta bancária tá bem gorda graças a isso. (Ele abre os braços se referindo à fábrica)");
+        loading(3000);
+        System.out.println("Jack: Esse é só o começo. Você não conseguirá me impedir, igual fez com os incompetentes anteriores.");
+        loading(3000);
+        System.out.println("Jones: Não me faça fazer isso, irmão. Por favor, se entregue! Não quero derrotar você.");
+        loading(3000);
+        System.out.println("Jack: Como se você fosse capaz!");
+        loading(3000);
+        System.out.println("Jack entra em um corpo robótico para poder enfrentar Jones.");
+        System.out.println("Jones: Veremos!");
+        new Combate("Boss");
+        if (!Heroi.getVivo()){return 0;}
+        System.out.println("Após uma luta árdua com seu irmão, Jones sai vitorioso, prende seu irmão e espera a chegada da polícia ambiental.\n");
+        loading(3000);
+        System.out.println("Antes da chegada da polícia, eles conseguem ter um breve diálogo.\n");
+        loading(3000);
+        System.out.println("Jones: Você me obrigou a fazer isso. Eu podia ter te ajudado! Precisamos cuidar do nosso planeta.");
+        loading(3000);
+        System.out.println("Jack: Você está certo, irmão. Eu pensei que não tinha volta, mas se todos nós fizermos nossa parte, já ajuda!");
+        loading(3000);
+        System.out.println("Jack: Quando eu ficar livre, irei me redimir e com certeza ajudarei o meio ambiente.\n");
+        loading(3000);
+        System.out.println("A polícia ambiental leva Jack em custódia, agradece Jones pelos serviços prestados em prol do meio ambiente, e diz que tomarão conta da fábrica.\n");
+        loading(3000);
+        System.out.println("Ao final dessa longa jornada, Jones retorna para sua vila e toma um belo banho (ele realmente estava precisando).\n");
+        loading(3000);
+        System.out.println("Ele caminha em direção à praia, repara que o ar já não está mais pesado, puxa o ar com vigor e se sente aliviado por ter conseguido ajudar a vila.\n");
+        loading(3000);
+        System.out.println("===== PARABÉNS, VOCÊ CONCLUIU O JOGO =====");
+        fimJogo = true;
         return 0;
-    };
-
-
-
-
-
+    }
 }
 
 
