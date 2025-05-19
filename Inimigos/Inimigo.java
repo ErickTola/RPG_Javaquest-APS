@@ -78,14 +78,7 @@ public abstract class Inimigo { // (Classe abstrata)
         }
     }
 
-    public void adcVida(int Cura){
-        this.hp += Cura;
-        System.out.println("O inimigo recuperou "+ Cura +" de vida!");
-        if (this.hp > this.maxHp){
-            this.hp = this.maxHp;
-        }
-    }
-
+    //Calcula a chance de um ataque acertar a partir de uma porcetagem especificada, dada de 10% em 10%
     public int calculadorChance(int porcentagem){
         int escolha = EnemyRd.nextInt(1,11);
         if (escolha <= (porcentagem/10)){
@@ -93,8 +86,6 @@ public abstract class Inimigo { // (Classe abstrata)
         }else{
             return 1;
         }
-
-
     }
 
     //Metodo abstrato que adiciona a desvantagem ao jogador caso o ataque inimigo acerte, será implementado nas classes filhas.
@@ -103,11 +94,12 @@ public abstract class Inimigo { // (Classe abstrata)
     //Metodo abstrato que determina o efeito especial, será implementado nas classes filhas.
     public abstract void efeitoEspec(int escolha); // (Metodo abstráto)
 
-    public String getHp(){
+    //Retorna o HP do inimigo em formato de string
+    public String getHp(){ //(Metodo "getter" / Encapsulamento)
         return (this.hp + "/" + this.maxHp);
     }
-
-    public String getNome(){
+    //Retorna o nome do inimigo.
+    public String getNome(){//(Metodo "getter" / Encapsulamento)
         return nome;
     }
 

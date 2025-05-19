@@ -1,8 +1,9 @@
 package Inimigos;
 
-public class Slime extends Inimigo{
+public class Slime extends Inimigo{// (Herança)
 
     public Slime(){
+        //Construtor que substituí os valores da classe pai pelos valores do inimigo em questão.
         this.hp = 10;
         this.maxHp = hp;
         this.atk = 1;
@@ -14,7 +15,7 @@ public class Slime extends Inimigo{
     }
 
     @Override
-    public void adcDebuff() {
+    public void adcDebuff() {// (Sobrescrita de metodo)
         switch (this.atkUsado){
             case 1:
                 //Verifica se o jogador já não está com alguma desvantagem
@@ -30,8 +31,9 @@ public class Slime extends Inimigo{
         }
     }
 
+    //Substituí o metodo genérico da classe pai e define os efeitos dos ataques do inimigo atual.
     @Override
-    public void efeitoEspec(int escolha) {
+    public void efeitoEspec(int escolha) {// (Sobrescrita de metodo)
         switch (escolha) {
             case 1:
                 System.out.println("\nO slime ataca com um de seus tentaculos!");

@@ -1,9 +1,10 @@
 package Inimigos;
 
-public class BracosRobos extends Inimigo{
+public class BracosRobos extends Inimigo{// (Herança)
 
 
-    public BracosRobos(){
+    public BracosRobos(){ // (Construtor)
+        //Construtor que substituí os valores da classe pai pelos valores do inimigo em questão.
         this.hp = 40;
         this.maxHp = hp;
         this.atk = 3;
@@ -16,8 +17,9 @@ public class BracosRobos extends Inimigo{
 
     }
 
+    //Substituí o metodo genérico da classe pai e define os efeitos dos ataques do inimigo atual.
     @Override
-    public int ataque(){
+    public int ataque(){// (Sobrescrita de metodo)
         int dado = 0;
         for (int x = 0; x < this.atk; x++) {
             int dadoPro = EnemyRd.nextInt(0, 20) + 1;
@@ -25,17 +27,13 @@ public class BracosRobos extends Inimigo{
                 dado = dadoPro;
             }
         }
-        efeitoEspec(calculadorChance(20));
+        efeitoEspec(calculadorChance(20)); // Usa um metodo da classe pai que devolve uma escolha baseada em porcentagem de chance de ocorrer (Neste caso 20%)
         return dado;
     }
 
+    // Sobrescreve o metodo abstrato da classe pai e aplica os efeitos do ataque escolhido pelo metodo acima
     @Override
-    public void adcDebuff() {
-
-    }
-
-    @Override
-    public void efeitoEspec(int escolha) {
+    public void efeitoEspec(int escolha) {// (Sobrescrita de metodo)
         switch (escolha) {
             case 1:
                 System.out.println("\nUm dos braços te da um soco!");
@@ -55,4 +53,11 @@ public class BracosRobos extends Inimigo{
                 break;
         }
     }
+
+    // Sobrescreve o metodo abstrato da classe pai (Inutilizado para este inimigo.)
+    @Override
+    public void adcDebuff() {// (Sobrescrita de metodo)
+
+    }
+
 }

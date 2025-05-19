@@ -1,9 +1,10 @@
 package Inimigos;
 
-public class EsfingedeLixo extends Inimigo{
+public class EsfingedeLixo extends Inimigo{// (Herança)
 
     public EsfingedeLixo(){
-        this.hp = 25;
+        //Construtor que substituí os valores da classe pai pelos valores do inimigo em questão.
+        this.hp = 30;
         this.maxHp = hp;
         this.atk = 2;
         this.def = 3;
@@ -13,6 +14,7 @@ public class EsfingedeLixo extends Inimigo{
         this.nome = "Esfinge de Lixo";
     }
 
+    //Substituí o metodo genérico da classe pai e define os efeitos dos ataques do inimigo atual.
     @Override
     public void efeitoEspec(int escolha){ // (Sobrescrita de metodo)
         switch (escolha) {

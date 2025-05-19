@@ -13,8 +13,8 @@ public class GolemPrastico extends Inimigo{ // (Herança)
         this.atkUsado = 0;
         this.nome = "Golem de Plástico";
     }
-    //Substituí o metodo genérico da classe pai e define os efeitos dos ataques do inimigo atual.
 
+    //Substituí o metodo genérico da classe pai e define os efeitos dos ataques do inimigo atual.
     @Override
     public void efeitoEspec(int escolha){ // (Sobrescrita de metodo)
         switch (escolha) {

@@ -1,12 +1,13 @@
 package Inimigos;
 
-public class Gigaboss extends Inimigo{
+public class Gigaboss extends Inimigo{ // (Herança)
     public Gigaboss(){
+        //Construtor que substituí os valores da classe pai pelos valores do inimigo em questão.
         this.hp = 35;
         this.maxHp = hp;
-        this.atk = 1;
-        this.def = 1;
-        this.agl = 1;
+        this.atk = 5;
+        this.def = 3;
+        this.agl = 5;
         this.dmg = 0;
         this.atkUsado = 0;
         this.nome = "O Chefe da Coorporação";
@@ -26,25 +27,39 @@ public class Gigaboss extends Inimigo{
     }
 
     @Override
-    public void adcDebuff() {
-
-    }
-
-    @Override
-    public void efeitoEspec(int escolha) {
-        switch (escolha) {
+    public void adcDebuff() {// (Sobrescrita de metodo)
+        switch (this.atkUsado){
             case 1:
-                System.out.println("\nUm dos braços te da um soco!");
-                this.dmg = 1;
-                this.perdeVez = false;
+                //Verifica se o jogador já não está com alguma desvantagem
+                //Salva o turno em que a desvantagem foi incialmente aplicada e determina a sua duração
+                if (Sistema.Heroi.getDebuffInit() <= 0) {
+                    Sistema.Heroi.aplDesv(3,2,"veneno");
+                }
                 this.atkUsado = 0;
                 break;
-            case 2:
-                System.out.println("\nOs braços tentam te agarrar!");
-                this.atkUsado = 1;
-                this.perdeVez = true;
-                this.dmg = 0;
+            default:
+                this.atkUsado = 0;
                 break;
+        }
+    }
+
+    //Substituí o metodo genérico da classe pai e define os efeitos dos ataques do inimigo atual.
+    @Override
+    public void efeitoEspec(int escolha) {// (Sobrescrita de metodo)
+        switch (escolha) {
+            case 1:
+                System.out.println("\n Jack dispara uma rajada de vapor toxico da armadura");
+                this.dmg = 5;
+                this.perdeVez = false;
+                this.atkUsado = 1;
+                break;
+            case 2:
+                System.out.println("\n Jack com sua armadura te prende utilizando uma especie de rede Plástica");
+                this.atkUsado = 0;
+                this.perdeVez = true;
+                this.dmg = 1;
+                break;
+
             default:
                 System.out.println("Ocorreu um erro na escolha de ataque");
                 this.perdeVez = false;
@@ -52,4 +67,3 @@ public class Gigaboss extends Inimigo{
         }
     }
 }
-
