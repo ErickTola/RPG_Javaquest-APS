@@ -720,7 +720,7 @@ public class Menus {
                 System.out.println("Errado! Francamente, e ainda se dizem a raça mais evoluída...");
                 new Combate("Esfinge");
                 if (!Heroi.getVivo()){return 0;}
-//
+
             }
         Inventario.adcItem("Cura Grande");
         Items.equipItem("Armadura Robótica");
