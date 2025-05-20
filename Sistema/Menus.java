@@ -2,7 +2,7 @@ package Sistema;
 
 public class Menus {
     static int escolhaMenu = 0; // Utilizado nas entradas do menu
-    static boolean skip = true; // Função de depuração, utilizada para desabilitar o tempo de espera entre dialogos.
+    static boolean skip = false; // Função de depuração, utilizada para desabilitar o tempo de espera entre dialogos.
     static boolean fimJogo = false; // Utilizada para definir se o jogador chegou ao final do jogo e sair do programa.
 
     public static String separador(){
@@ -142,7 +142,7 @@ public class Menus {
         System.out.println("\n\n===== CAPÍTULO 1 =====");
         System.out.println("      A Praia Poluída\n");
         loading(3000);
-        // Chama o método para a interação na praia
+        // Chama o metodo para os caminhos do jogo
         introducaoPraia();
         terrenoFabrica();
         return 0;
@@ -295,7 +295,7 @@ public class Menus {
         }
     }
 
-    // Quiosque
+    // Metodo de caminho pro Quiosque
     public static void visitarQuiosque() {
         System.out.println(separador());
         System.out.println("O herói chega ao quiosque abandonado.");
@@ -318,7 +318,7 @@ public class Menus {
         loading(2000);
     }
 
-    // Orla
+    // Metodo de caminho pra Orla
     public static void visitarOrla() {
         System.out.println(separador());
         System.out.println("Senhor Jones vai até a orla da praia, em passos leves.");
@@ -653,7 +653,7 @@ public class Menus {
         System.out.println(" ===== FIM DO CAPÍTULO 1. ===== ");
         return 0;
     }
-
+    // Caminha até o terreno da fabrica + luta com braço, esfinge e boss final
     public static int terrenoFabrica(){
         System.out.println(separador());
         System.out.println(" ===== INÍCIO CAPÍTULO 2 ===== ");
@@ -709,7 +709,8 @@ public class Menus {
         loading(3000);
         System.out.println("Esfinge de Lixo: Ser insignificante, você só passará caso acerte meu enigma e, caso erre... sofrerá as consequências.\n");
         loading(3000);
-        // ENIGMA
+
+        // ENIGMA Esfinge
         System.out.println(separador());
         System.out.println(
                 separador()+
@@ -725,6 +726,7 @@ public class Menus {
                         "4) Energia de biomassa\n" +
                         "5) Energia nuclear");
                         System.out.print("Digite sua escolha: ");
+        // sistema de escolha do enigma
         int escolhaEnigma = 0;
                 escolhaEnigma = lerEscolhaValida();
             if (escolhaEnigma == 3) {
